@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 // CUSTOM IMPORTS
 import Background from '../../components/Background';
@@ -15,39 +15,53 @@ import {
   SignLinkText,
 } from './styles';
 
-const Signin = () => (
-  <Background>
-    <Container>
+const Signin = ({ navigation }) => {
+  // REFS
+  const passwordRef = useRef();
 
-      <Logo source={logo} />
+  // FUNCTIONS
+  function handleSubmit() {
+    navigation.navigate('Home');
+  }
 
-      <Form>
-        <FormInput
-          keyboardType="email-address"
-          autoCorrect={false}
-          autoCapitalize="none"
-          placeholder="Digite seu email"
-          icon="email"
-        />
+  return (
+    <Background>
+      <Container>
 
-        <FormInput
-          style={{ marginTop: 8 }}
-          placeholder="Digite sua senha"
-          icon="lock"
-          secureTextEntry
-        />
+        <Logo source={logo} />
 
-        <SubmitButton onPress={() => {}}>Fazer login</SubmitButton>
-      </Form>
+        <Form>
+          <FormInput
+            keyboardType="email-address"
+            autoCorrect={false}
+            autoCapitalize="none"
+            placeholder="Digite seu email"
+            icon="email"
+            returnKeyType="next"
+            onSubmitEditing={() => passwordRef.current.focus()}
+          />
 
-      <Text>Aínda não possuí uma conta?</Text>
+          <FormInput
+            style={{ marginTop: 8 }}
+            placeholder="Digite sua senha"
+            icon="lock"
+            secureTextEntry
+            ref={passwordRef}
+            onSubmitEditing={handleSubmit}
+          />
 
-      <SignLink>
-        <SignLinkText>Criar conta</SignLinkText>
-      </SignLink>
+          <SubmitButton onPress={handleSubmit}>Fazer login</SubmitButton>
+        </Form>
 
-    </Container>
-  </Background>
-);
+        <Text>Aínda não possuí uma conta?</Text>
+
+        <SignLink onPress={() => navigation.navigate('SignUp')}>
+          <SignLinkText>Criar conta</SignLinkText>
+        </SignLink>
+
+      </Container>
+    </Background>
+  );
+};
 
 export default Signin;
