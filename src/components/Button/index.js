@@ -8,7 +8,7 @@ import { Container, Title } from './styles';
 const Button = ({ children, isLoading, ...rest }) => (
   <Container {...rest}>
     {isLoading
-      ? <ActivityIndicator size="small" color="#000" />
+      ? <ActivityIndicator size="large" color="#fff" />
       : <Title>{children}</Title>}
 
   </Container>

@@ -1,4 +1,8 @@
 import React, { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+// REDUX ACTIONS
+import { signIn } from '../../store/modules/auth/actions';
 
 // CUSTOM IMPORTS
 import Background from '../../components/Background';
@@ -16,12 +20,20 @@ import {
 } from './styles';
 
 const Signin = ({ navigation }) => {
+  // REDUCER
+  const dispatch = useDispatch();
+  const signing = useSelector((state) => state.auth.signing);
+
   // REFS
   const passwordRef = useRef();
 
+  // STATES
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
   // FUNCTIONS
   function handleSubmit() {
-    navigation.navigate('Home');
+    dispatch(signIn(email, password));
   }
 
   return (
@@ -39,6 +51,7 @@ const Signin = ({ navigation }) => {
             icon="email"
             returnKeyType="next"
             onSubmitEditing={() => passwordRef.current.focus()}
+            onChangeText={setEmail}
           />
 
           <FormInput
@@ -48,9 +61,12 @@ const Signin = ({ navigation }) => {
             secureTextEntry
             ref={passwordRef}
             onSubmitEditing={handleSubmit}
+            onChangeText={setPassword}
           />
 
-          <SubmitButton onPress={handleSubmit}>Fazer login</SubmitButton>
+          <SubmitButton onPress={handleSubmit} isLoading={signing}>
+            Fazer Login
+          </SubmitButton>
         </Form>
 
         <Text>Aínda não possuí uma conta?</Text>

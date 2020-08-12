@@ -1,4 +1,8 @@
 import React, { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+// REDUX ACTIONS
+import { signUp } from '../../store/modules/auth/actions';
 
 // CUSTOM IMPORTS
 import Background from '../../components/Background';
@@ -16,13 +20,22 @@ import {
 } from './styles';
 
 const SignUp = ({ navigation }) => {
+  // REDUCER
+  const dispatch = useDispatch();
+  const signing = useSelector((state) => state.auth.signing);
+
   // REFS
   const emailRef = useRef();
   const passwordRef = useRef();
 
+  // STATES
+  const [name, setName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
   // FUNCTIONS
   function handleSubmit() {
-    alert('submit');
+    dispatch(signUp(name, email, password));
   }
 
   return (
@@ -39,6 +52,7 @@ const SignUp = ({ navigation }) => {
             icon="person"
             returnKeyType="next"
             onSubmitEditing={() => emailRef.current.focus()}
+            onChangeText={setName}
           />
 
           <FormInput
@@ -50,6 +64,7 @@ const SignUp = ({ navigation }) => {
             icon="email"
             returnKeyType="next"
             onSubmitEditing={() => passwordRef.current.focus()}
+            onChangeText={setEmail}
           />
 
           <FormInput
@@ -58,9 +73,10 @@ const SignUp = ({ navigation }) => {
             icon="lock"
             secureTextEntry
             onSubmitEditing={handleSubmit}
+            onChangeText={setPassword}
           />
 
-          <SubmitButton onPress={handleSubmit}>Fazer cadastro</SubmitButton>
+          <SubmitButton isLoading={signing} onPress={handleSubmit}>Fazer cadastro</SubmitButton>
         </Form>
 
         <Text>Ja possuí uma conta?</Text>
