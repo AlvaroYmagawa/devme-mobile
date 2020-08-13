@@ -1,8 +1,22 @@
 import React from 'react';
-import { Text } from 'react-native';
 
-// import { Container } from './styles';
+// CUSTOM IMPORTSS
+import { Container, Scroll, Item } from './styles';
+import Header from '../../components/Header';
 
-const Home = () => <Text>Home</Text>;
+const Home = () => (
+  <Container>
+    <Header />
+    <Scroll>
+      <Item />
+      <Item />
+      <Item />
+      <Item />
+      <Item />
+
+    </Scroll>
+
+  </Container>
+);
 
 export default Home;
