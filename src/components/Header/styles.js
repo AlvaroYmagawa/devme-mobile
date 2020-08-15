@@ -14,7 +14,7 @@ export const Content = styled.View`
   flex-direction: row;
   align-items: center;
   border-style: solid;
-  border-bottom-color: ${colors.black20};
+  border-bottom-color: ${colors.primary};
   border-bottom-width: 1px;
 `;
 

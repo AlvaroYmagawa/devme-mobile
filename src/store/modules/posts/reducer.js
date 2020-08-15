@@ -11,13 +11,13 @@ const INITIAL_STATE = {
   },
 };
 
-export default function categoriesReducer(state = INITIAL_STATE, action) {
+export default function postsReducer(state = INITIAL_STATE, action) {
   return produce(state, (draft) => {
     switch (action.type) {
       case types.LIST.SUCCESS: {
-        const { categories } = action.payload;
+        const { posts } = action.payload;
 
-        if (isDataValid(categories)) draft.list.data = categories;
+        if (isDataValid(posts)) draft.list.data = posts;
 
         draft.list.isLoaded = true;
 

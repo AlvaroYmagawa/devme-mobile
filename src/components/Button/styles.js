@@ -9,6 +9,8 @@ export const Container = styled(RectButton)`
   height: 56px;
   border-radius: 16px;
   background: ${colors.accent};
+  elevation: 5;
+  flex-direction: row;
 
   align-items: center;
   justify-content: center;

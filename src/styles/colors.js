@@ -1,9 +1,11 @@
 const colors = {
-  primary: '#CA2094',
-  accent: '#EA80C8',
-  background: '#fff',
+  primary: '#393e46',
+  primatyDark: '#232931',
+  accent: '#4ecca3',
+  background: '#232931',
 
-  text: '#A9A9A9',
+  text: '#aaa',
+  opaquetText: '#aaaaaa66',
   strong: '#000000BF',
 
   // BLACK

@@ -12,11 +12,10 @@ export const Container = styled.View`
 export const Card = styled.TouchableOpacity`
   height: 64px;
   width: 64px;
-  background: #fff;
+  background: ${colors.primary};
   border-radius: 40px;
-
   margin: 4px;
-  elevation: 4;
+  elevation: 5;
   justify-content: center;
   align-items: center;
 `;
@@ -25,5 +24,5 @@ export const Name = styled.Text`
   margin-top: 4px;
   font-size: 10px;
   font-weight: bold;
-  color: ${colors.accent};
+  color: ${(props) => (props.isPress ? colors.accent : colors.text)};
 `;

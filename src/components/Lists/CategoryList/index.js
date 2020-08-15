@@ -5,12 +5,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { listCategories } from '../../../store/modules/categories/actions';
 
 // CUSTOM IMPORTS
-import { Container, CategoryCell } from './styles';
+import { Container, Category } from './styles';
 
-const Categories = ({ style }) => {
+const CategoriyList = ({ style }) => {
   const dispatch = useDispatch();
   const reducer = useSelector((state) => state.categories.list);
-  const { data, isLoaded } = reducer;
+  const { data: categories, isLoaded } = reducer;
 
   // FUNCTIONS
   React.useEffect(() => {
@@ -18,15 +18,10 @@ const Categories = ({ style }) => {
   }, []);
 
   return isLoaded && (
-    <Container
-      style={style}
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      data={data}
-      KeyExtractor={(item) => item.id}
-      renderItem={({ item }) => <CategoryCell category={item} />}
-    />
+    <Container style={style} horizontal showsHorizontalScrollIndicator={false}>
+      {categories.map((category) => (<Category key={category.id} category={category} />))}
+    </Container>
   );
 };
 
-export default Categories;
+export default CategoriyList;

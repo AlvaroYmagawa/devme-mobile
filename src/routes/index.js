@@ -41,7 +41,7 @@ const Routes = () => {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
-          color = focused ? colors.accent : colors.black50;
+          color = focused ? colors.accent : colors.primary;
 
           switch (route.name) {
             case 'Home':
@@ -60,9 +60,10 @@ const Routes = () => {
       })}
       tabBarOptions={{
         activeTintColor: colors.accent,
-        inactiveTintColor: colors.black50,
+        inactiveTintColor: colors.primary,
         style: {
           paddingBottom: 4,
+          backgroundColor: colors.background,
         },
       }}
     >

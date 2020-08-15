@@ -2,16 +2,15 @@ import React from 'react';
 
 // CUSTOM IMPORTSS
 import Background from '../../components/Background';
-import { Container, Scroll, Categories } from './styles';
 import Header from '../../components/Header';
+import { Container, Posts } from './styles';
 
 const Home = () => (
   <Background>
     <Container>
       <Header />
-      <Scroll>
-        <Categories />
-      </Scroll>
+
+      <Posts />
 
     </Container>
   </Background>
