@@ -6,7 +6,7 @@ export default (reducers) => {
     {
       key: 'justParty',
       storage: AsyncStorage, // This config is nedeed to mobile env
-      whiteList: ['auth', 'user'], // Only persists the reducers inside the whiteList
+      blacklist: ['categories'], // Do not persist reducers in blackList
     },
     reducers,
   );

@@ -1,22 +1,20 @@
 import React from 'react';
 
 // CUSTOM IMPORTSS
-import { Container, Scroll, Item } from './styles';
+import Background from '../../components/Background';
+import { Container, Scroll, Categories } from './styles';
 import Header from '../../components/Header';
 
 const Home = () => (
-  <Container>
-    <Header />
-    <Scroll>
-      <Item />
-      <Item />
-      <Item />
-      <Item />
-      <Item />
+  <Background>
+    <Container>
+      <Header />
+      <Scroll>
+        <Categories />
+      </Scroll>
 
-    </Scroll>
-
-  </Container>
+    </Container>
+  </Background>
 );
 
 export default Home;

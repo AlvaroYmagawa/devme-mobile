@@ -21,5 +21,6 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',
     'no-param-reassign': 'off',
+    'consistent-return': 'off',
   },
 };

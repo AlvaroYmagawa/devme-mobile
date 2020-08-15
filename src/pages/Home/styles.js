@@ -1,17 +1,16 @@
 import styled from 'styled-components/native';
 
 // CUSTOM IMPORTS
-import { colors } from '../../styles';
+import CategoryList from '../../components/Lists/Categories';
 
-export const Container = styled.KeyboardAvoidingView``;
+export const Container = styled.View`
+  flex: 1;
+`;
 
 export const Scroll = styled.ScrollView`
   max-height: 100%;
 `;
 
-export const Item = styled.View`
-  width: 100px;
-  height: 300px;
+export const Categories = styled(CategoryList)`
   margin: 8px;
-  background: #000;
 `;
