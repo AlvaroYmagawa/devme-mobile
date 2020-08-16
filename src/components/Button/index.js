@@ -5,6 +5,7 @@ import { FontAwesome } from '@expo/vector-icons';
 
 // CUSTOM IMPORTS
 import { Container, Title } from './styles';
+import { colors } from '../../styles';
 
 const Button = ({
   children, isLoading, fontAwesomeIcon, ...rest
@@ -15,13 +16,13 @@ const Button = ({
     <FontAwesome
       name={fontAwesomeIcon}
       size={24}
-      color="#fff"
+      color={colors.primary}
       style={{ marginRight: 12 }}
     />
     ) }
 
     {isLoading
-      ? <ActivityIndicator size="large" color="#fff" />
+      ? <ActivityIndicator size="large" color={colors.primary} />
       : <Title>{children}</Title>}
 
   </Container>

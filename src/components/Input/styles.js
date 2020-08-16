@@ -5,16 +5,16 @@ export const Container = styled.View`
   padding: 0 16px;
   height: 56px;
   border-radius: 16px;
-  background: ${colors.whiteSmoke};
+  background: ${colors.primary};
 
   align-items: center;
   flex-direction: row;
 `;
 
 export const TInput = styled.TextInput.attrs({
-  placeholderTextColor: colors.text,
+  placeholderTextColor: colors.primaryDark,
 })`
   flex: 1;
   margin-left: 16px;
-  color: #000;
+  color: #fff;
 `;

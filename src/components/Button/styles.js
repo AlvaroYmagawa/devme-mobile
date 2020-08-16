@@ -17,7 +17,7 @@ export const Container = styled(RectButton)`
   `;
 
 export const Title = styled.Text`
-  color: #fff;
+  color: ${colors.primary};
   font-size: 16px;
   font-weight: bold;
 `;

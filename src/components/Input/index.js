@@ -8,7 +8,7 @@ import { colors } from '../../styles';
 
 const Input = ({ style, icon, ...rest }, ref) => (
   <Container style={style}>
-    {icon && <MaterialIcons name={icon} size={24} color={colors.text} />}
+    {icon && <MaterialIcons name={icon} size={24} color={colors.primaryDark} />}
 
     <TInput {...rest} ref={ref} />
   </Container>
