@@ -18,8 +18,8 @@ export const Container = styled.KeyboardAvoidingView.attrs({
 `;
 
 export const Logo = styled.Image`
-  width: 200px;
-  height: 28px;
+   width: 210;
+  height: 40px;
 `;
 
 export const Form = styled.View`
@@ -28,8 +28,8 @@ export const Form = styled.View`
 `;
 
 export const FormTitle = styled.Text`
-  font-size: 30px;
-  color: ${colors.strong};
+  font-size: 20px;
+  color: #f2f2f2;
   font-weight: bold;
   margin: 0 auto 16px auto;
 `;

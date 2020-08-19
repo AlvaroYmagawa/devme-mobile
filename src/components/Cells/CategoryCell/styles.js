@@ -12,7 +12,7 @@ export const Container = styled.View`
 export const Card = styled.TouchableOpacity`
   height: 64px;
   width: 64px;
-  background: ${colors.primary};
+  background: ${(props) => (props.accentTheme ? colors.accent : colors.primary)};
   border-radius: 40px;
   margin: 4px;
   elevation: 5;

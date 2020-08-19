@@ -7,8 +7,9 @@ import { Container, Posts } from './styles';
 
 const Home = () => (
   <Background>
+    <Header />
+
     <Container>
-      <Header />
 
       <Posts />
 

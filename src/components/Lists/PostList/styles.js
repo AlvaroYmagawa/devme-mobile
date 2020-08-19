@@ -5,6 +5,7 @@ import PostCell from '../../Cells/PostCell';
 import CategoryList from '../CategoryList';
 
 export const Container = styled.FlatList`
+  padding: 0 8px;
 `;
 
 export const Categories = styled(CategoryList)`

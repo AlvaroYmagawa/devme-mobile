@@ -9,7 +9,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import Home from '../pages/Home';
-import Profile from '../pages/Profile';
+import MyProfile from '../pages/MyProfile';
 
 import { colors } from '../styles';
 
@@ -48,7 +48,7 @@ const Routes = () => {
               iconName = 'home';
               break;
 
-            case 'Profile':
+            case 'MyProfile':
               iconName = 'person';
               break;
 
@@ -68,7 +68,7 @@ const Routes = () => {
       }}
     >
       <Tab.Screen name="Home" component={Home} />
-      <Tab.Screen name="Profile" component={Profile} />
+      <Tab.Screen name="MyProfile" component={MyProfile} />
     </Tab.Navigator>
   );
 

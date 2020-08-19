@@ -12,6 +12,7 @@ import {
   Container,
   Logo,
   Form,
+  FormTitle,
   FormInput,
   SubmitButton,
   Text,
@@ -43,6 +44,7 @@ const Signin = ({ navigation }) => {
         <Logo source={logo} />
 
         <Form>
+          <FormTitle>Fazer Login</FormTitle>
           <FormInput
             keyboardType="email-address"
             autoCorrect={false}

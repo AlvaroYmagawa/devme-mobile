@@ -9,12 +9,22 @@ import { Fontisto, Ionicons, FontAwesome } from '@expo/vector-icons';
 import { Container, Card, Name } from './styles';
 import { colors } from '../../../styles';
 
-const CategoryCell = ({ category }) => {
+const CategoryCell = ({ category, accentTheme }) => {
   const { name, type } = category;
 
   // STATE
   const [isPress, setIsPress] = React.useState(false);
-  const iconColor = isPress ? colors.accent : colors.text;
+
+  // FUNCTIONS
+  function setIconColor() {
+    if (accentTheme) return colors.primaryDark;
+
+    if (isPress) return colors.accent;
+
+    return colors.text;
+  }
+
+  const iconColor = setIconColor();
 
   function renderIcon() {
     switch (type) {
@@ -41,6 +51,7 @@ const CategoryCell = ({ category }) => {
   return (
     <Container>
       <Card
+        accentTheme={accentTheme}
         activeOpacity={1}
         onPressIn={() => setIsPress(true)}
         onPressOut={() => setIsPress(false)}
@@ -48,7 +59,7 @@ const CategoryCell = ({ category }) => {
         {renderIcon()}
       </Card>
 
-      <Name isPress={isPress}>{name}</Name>
+      <Name isPress={isPress} accentTheme={accentTheme}>{name}</Name>
     </Container>
   );
 };

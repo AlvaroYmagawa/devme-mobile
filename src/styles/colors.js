@@ -1,9 +1,10 @@
 const colors = {
-  primary: '#393e46',
-  primaryDark: '#232931',
+  primaryDark: '#393e46',
+  primary: '#232931',
   accent: '#4ecca3',
-  background: '#232931',
+  background: '#393e46',
 
+  strongText: '#f6f6f6',
   text: '#aaa',
   opaquetText: '#aaaaaa66',
   strong: '#000000BF',

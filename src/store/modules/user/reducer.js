@@ -16,10 +16,6 @@ export default function userReducer(state = INITIAL_STATE, action) {
         draft.profile = user;
         break;
       }
-      case '@user/UPDATE_PROFILE_SUCESS': {
-        draft.profile = action.payload.profile;
-        break;
-      }
       case '@auth/SIGN_OUT': {
         draft.profile.data = {};
         break;

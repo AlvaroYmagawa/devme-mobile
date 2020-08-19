@@ -12,6 +12,7 @@ import {
   Container,
   Logo,
   Form,
+  FormTitle,
   FormInput,
   SubmitButton,
   Text,
@@ -45,6 +46,7 @@ const SignUp = ({ navigation }) => {
         <Logo source={logo} />
 
         <Form>
+          <FormTitle>Fazer Cadastro</FormTitle>
           <FormInput
             autoCorrect={false}
             autoCapitalize="none"

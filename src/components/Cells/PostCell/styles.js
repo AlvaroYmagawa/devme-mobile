@@ -9,6 +9,7 @@ export const Container = styled.View`
   background: ${colors.primary};
   padding: 16px;
   elevation: 5;
+  border-radius: 16px;
 `;
 
 export const Header = styled.View`

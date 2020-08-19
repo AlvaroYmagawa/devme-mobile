@@ -3,9 +3,10 @@ import { useSelector } from 'react-redux';
 
 // CUSTOM IMPORTS
 import {
-  Container, Content, Logo, Avatar, AvatarButton,
+  Container, Content, RighArea, Logo, SearchButton, MenuButton, SearchIcon, MenuIcon,
 } from './styles';
 
+import { colors } from '../../styles';
 import miniLogo from '../../assets/miniLogo.png';
 
 const Header = () => {
@@ -17,9 +18,15 @@ const Header = () => {
       <Content>
         <Logo source={miniLogo} />
 
-        <AvatarButton onPress={() => alert('clcik')}>
-          <Avatar source={{ uri: avatar }} />
-        </AvatarButton>
+        <RighArea>
+          <SearchButton>
+            <SearchIcon name="search" size={26} color={colors.text} />
+          </SearchButton>
+
+          <MenuButton>
+            <MenuIcon name="more-vert" size={26} color={colors.text} />
+          </MenuButton>
+        </RighArea>
       </Content>
 
     </Container>
