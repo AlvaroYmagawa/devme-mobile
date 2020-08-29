@@ -24,16 +24,11 @@ export function* signIn({ payload }) {
       ],
     };
 
-    const token = 'leleogay';
+    const token = 'utfpr';
 
     yield delay(2000);
 
     yield put(signInSuccess(token, user));
-
-    Alert.alert(
-      'Login',
-      'Successo',
-    );
   } catch (err) {
     Alert.alert(
       'Falha na autenticação',

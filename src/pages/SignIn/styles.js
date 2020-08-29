@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import { Platform } from 'react-native';
+import { Form as RocketForm } from '@unform/mobile';
 
 // CUSTOM IMPORTS
 import Button from '../../components/Button';
@@ -18,11 +19,11 @@ export const Container = styled.KeyboardAvoidingView.attrs({
 `;
 
 export const Logo = styled.Image`
-  width: 210;
-  height: 40px;
+  width: 180px;
+  height: 35px;
 `;
 
-export const Form = styled.View`
+export const Form = styled(RocketForm)`
   align-self: stretch;
   margin-top: 72px;
 `;

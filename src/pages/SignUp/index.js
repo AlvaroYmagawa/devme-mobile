@@ -1,11 +1,14 @@
-import React, { useRef } from 'react';
+import React, { useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import * as Yup from 'yup';
 
 // REDUX ACTIONS
 import { signUp } from '../../store/modules/auth/actions';
 
 // CUSTOM IMPORTS
 import Background from '../../components/Background';
+import { isDataValid } from '../../utils/validations';
+import { getYupErrors } from '../../utils/yup';
 import logo from '../../assets/logo.png';
 
 import {
@@ -26,18 +29,33 @@ const SignUp = ({ navigation }) => {
   const signing = useSelector((state) => state.auth.signing);
 
   // REFS
+  const formRef = useRef(null);
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  // STATES
-  const [name, setName] = React.useState('');
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-
   // FUNCTIONS
-  function handleSubmit() {
-    dispatch(signUp(name, email, password));
-  }
+  const handleSignUp = useCallback(async (data) => {
+    try {
+      // Clear errors
+      if (isDataValid(formRef.current)) formRef.current.setErrors({});
+
+      const schema = Yup.object().shape({
+        name: Yup.string().required('O nome é obrigatório'),
+        email: Yup.string().required('O email é obrigatório'),
+        password: Yup.string().required('A senha é obrigatória'),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+    } catch (err) {
+      // Format yup errors
+      const errors = getYupErrors(err);
+
+      // Set errors into form inputs
+      if (isDataValid(formRef.current)) formRef.current.setErrors(errors);
+    }
+  }, []);
 
   return (
     <Background>
@@ -45,20 +63,21 @@ const SignUp = ({ navigation }) => {
 
         <Logo source={logo} />
 
-        <Form>
+        <Form ref={formRef} onSubmit={handleSignUp}>
           <FormTitle>Fazer Cadastro</FormTitle>
           <FormInput
+            name="name"
             autoCorrect={false}
             autoCapitalize="none"
             placeholder="Nome completo"
             icon="person"
             returnKeyType="next"
             onSubmitEditing={() => emailRef.current.focus()}
-            onChangeText={setName}
           />
 
           <FormInput
             ref={emailRef}
+            name="email"
             keyboardType="email-address"
             autoCorrect={false}
             autoCapitalize="none"
@@ -66,19 +85,28 @@ const SignUp = ({ navigation }) => {
             icon="email"
             returnKeyType="next"
             onSubmitEditing={() => passwordRef.current.focus()}
-            onChangeText={setEmail}
           />
 
           <FormInput
             ref={passwordRef}
+            name="password"
             placeholder="Digite sua senha"
             icon="lock"
             secureTextEntry
-            onSubmitEditing={handleSubmit}
-            onChangeText={setPassword}
+            onSubmitEditing={() => {
+              if (formRef.current) formRef.current.submitForm();
+            }}
           />
 
-          <SubmitButton isLoading={signing} onPress={handleSubmit}>Fazer cadastro</SubmitButton>
+          <SubmitButton
+            isLoading={signing}
+            onPress={() => {
+              if (formRef.current) formRef.current.submitForm();
+            }}
+          >
+            Fazer cadastro
+
+          </SubmitButton>
         </Form>
 
         <Text>Ja possuí uma conta?</Text>

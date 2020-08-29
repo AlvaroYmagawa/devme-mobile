@@ -1,5 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import * as Yup from 'yup';
 
 // REDUX ACTIONS
 import { signIn } from '../../store/modules/auth/actions';
@@ -7,6 +8,8 @@ import { signIn } from '../../store/modules/auth/actions';
 // CUSTOM IMPORTS
 import Background from '../../components/Background';
 import logo from '../../assets/logo.png';
+import { isDataValid } from '../../utils/validations';
+import { getYupErrors } from '../../utils/yup';
 
 import {
   Container,
@@ -26,16 +29,33 @@ const Signin = ({ navigation }) => {
   const signing = useSelector((state) => state.auth.signing);
 
   // REFS
-  const passwordRef = useRef();
-
-  // STATES
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const formRef = useRef(null);
+  const passwordRef = useRef(null);
 
   // FUNCTIONS
-  function handleSubmit() {
-    dispatch(signIn(email, password));
-  }
+  const handleSignIn = useCallback(async (data) => {
+    try {
+      // Clear errors
+      if (isDataValid(formRef.current)) formRef.current.setErrors({});
+
+      const schema = Yup.object().shape({
+        email: Yup.string().required('O email é obrigatório'),
+        password: Yup.string().required('A senha é obrigatória'),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      dispatch(signIn());
+    } catch (err) {
+      // Format yup errors
+      const errors = getYupErrors(err);
+
+      // Set errors into form inputs
+      if (isDataValid(formRef.current)) formRef.current.setErrors(errors);
+    }
+  }, []);
 
   return (
     <Background>
@@ -43,9 +63,10 @@ const Signin = ({ navigation }) => {
 
         <Logo source={logo} />
 
-        <Form>
+        <Form ref={formRef} onSubmit={handleSignIn}>
           <FormTitle>Fazer Login</FormTitle>
           <FormInput
+            name="email"
             keyboardType="email-address"
             autoCorrect={false}
             autoCapitalize="none"
@@ -53,20 +74,24 @@ const Signin = ({ navigation }) => {
             icon="email"
             returnKeyType="next"
             onSubmitEditing={() => passwordRef.current.focus()}
-            onChangeText={setEmail}
           />
 
           <FormInput
+            ref={passwordRef}
+            name="password"
             style={{ marginTop: 8 }}
             placeholder="Digite sua senha"
             icon="lock"
             secureTextEntry
-            ref={passwordRef}
-            onSubmitEditing={handleSubmit}
-            onChangeText={setPassword}
+
           />
 
-          <SubmitButton onPress={handleSubmit} isLoading={signing}>
+          <SubmitButton
+            onPress={() => {
+              if (formRef.current) formRef.current.submitForm();
+            }}
+            isLoading={signing}
+          >
             Fazer Login
           </SubmitButton>
         </Form>

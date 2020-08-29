@@ -1,4 +1,4 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { colors } from '../../styles';
 
 export const Container = styled.View`
@@ -9,6 +9,16 @@ export const Container = styled.View`
 
   align-items: center;
   flex-direction: row;
+  border-width: 2px;
+  border-color: ${colors.primary}
+
+  ${(props) => props.isFocused && css`
+    border-color: ${colors.accent}
+  `}
+
+  ${(props) => props.error && css`
+    border-color: red
+  `}
 `;
 
 export const TInput = styled.TextInput.attrs({
@@ -17,4 +27,8 @@ export const TInput = styled.TextInput.attrs({
   flex: 1;
   margin-left: 16px;
   color: #fff;
+`;
+
+export const ErrorMessage = styled.Text`
+  color: red;
 `;
