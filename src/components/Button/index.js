@@ -8,14 +8,14 @@ import { Container, Title } from './styles';
 import { colors } from '../../styles';
 
 const Button = ({
-  children, isLoading, fontAwesomeIcon, ...rest
+  children, isLoading, fontAwesomeIcon, iconSize, ...rest
 }) => (
   <Container {...rest}>
 
     {fontAwesomeIcon && (
     <FontAwesome
       name={fontAwesomeIcon}
-      size={24}
+      size={iconSize}
       color={colors.primary}
       style={{ marginRight: 12 }}
     />
@@ -31,10 +31,14 @@ const Button = ({
 Button.propTypes = {
   children: PropTypes.string.isRequired,
   isLoading: PropTypes.bool,
+  iconSize: PropTypes.number,
+  fontAwesomeIcon: PropTypes.string,
 };
 
 Button.defaultProps = {
   isLoading: false,
+  iconSize: 24,
+  fontAwesomeIcon: null,
 };
 
 export default Button;

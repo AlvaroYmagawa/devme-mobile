@@ -5,12 +5,17 @@ import { useSelector, useDispatch } from 'react-redux';
 import { listPosts } from '../../../store/modules/posts/actions';
 
 // CUSTOM IMPORTS
-import { Container, Post, Categories } from './styles';
+import {
+  Container, Post, Categories,
+} from './styles';
+import AddPostCard from './AddPostCard';
 
 const PostList = ({ style }) => {
   const dispatch = useDispatch();
   const reducer = useSelector((state) => state.posts.list);
   const { data, isLoaded } = reducer;
+
+  const profile = useSelector((state) => state.user.profile);
 
   // FUNCTIONS
   React.useEffect(() => {
@@ -21,7 +26,10 @@ const PostList = ({ style }) => {
     <Container
       style={style}
       ListHeaderComponent={(
-        <Categories />
+        <>
+          <Categories />
+          <AddPostCard profile={profile} />
+        </>
       )}
       showsVerticalScrollIndicator={false}
       data={data}

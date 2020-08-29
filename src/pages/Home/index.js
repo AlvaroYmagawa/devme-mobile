@@ -7,7 +7,7 @@ import { Container, Posts } from './styles';
 
 const Home = () => (
   <Background>
-    <Header />
+    <Header title="home" />
 
     <Container>
 

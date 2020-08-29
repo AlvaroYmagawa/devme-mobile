@@ -3,13 +3,13 @@ import { useSelector } from 'react-redux';
 
 // CUSTOM IMPORTS
 import {
-  Container, Content, RighArea, Logo, SearchButton, MenuButton, SearchIcon, MenuIcon,
+  Container, Content, RighArea, Title, Logo, SearchButton, MenuButton, SearchIcon, MenuIcon,
 } from './styles';
 
 import { colors } from '../../styles';
 import miniLogo from '../../assets/miniLogo.png';
 
-const Header = () => {
+const Header = ({ title }) => {
   // REDUCER
   const avatar = useSelector((state) => state.user.profile.avatar);
 
@@ -17,6 +17,8 @@ const Header = () => {
     <Container>
       <Content>
         <Logo source={miniLogo} />
+
+        {/* <Title>{title}</Title> */}
 
         <RighArea>
           <SearchButton>

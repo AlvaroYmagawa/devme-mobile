@@ -10,6 +10,13 @@ export const Container = styled.View`
   padding: 0 16px;
 `;
 
+export const Title = styled.Text`
+  font-size: 16px;
+  text-transform: uppercase;
+  color: ${colors.strongText};
+  font-weight: bold;
+`;
+
 export const Content = styled.View`
   width: 100%;
   height: 45px;
