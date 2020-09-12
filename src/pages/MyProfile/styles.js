@@ -10,23 +10,26 @@ export const Container = styled.View`
   height: 100%;
   flex-direction: row;
   align-items: flex-end;
+  position: relative;
+`;
+
+export const Scroll = styled.ScrollView`
+  padding: 0 16px 16px 16px;
 `;
 
 export const Card = styled.View`
   position: relative;
   width: 100%;
-  padding: 0 16px;
   height: 85%;
+  padding-top: 60px;
   border-top-right-radius: 16px;
   border-top-left-radius: 16px;
-  padding-top: 60px;
-  padding-bottom: 16px;
   elevation: 5;
   background: ${colors.primary};
 `;
 
-export const CardButton = styled(Button)`
-  margin-top: auto;
+export const EditButton = styled(Button)`
+  margin: 24px 0;
 `;
 
 export const Header = styled.View`
@@ -96,3 +99,18 @@ export const FieldsetKnowledges = styled.View`
 `;
 
 export const Knowledges = styled(Categories)``;
+
+export const ExitButton = styled.TouchableOpacity`
+  position: absolute;
+  flex-direction: row;
+  align-items: center;
+  top: 0;
+  right: 0;
+  margin: 24px;
+`;
+
+export const ExitButtonText = styled.Text`
+  font-size: 12px;
+  color: ${colors.text};
+  margin-right: 8px;
+`;

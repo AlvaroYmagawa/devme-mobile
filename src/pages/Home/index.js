@@ -12,7 +12,6 @@ const Home = () => (
     <Container>
 
       <Posts />
-
     </Container>
   </Background>
 );

@@ -38,7 +38,6 @@ export const SearchButton = styled(RectButton)`
   background: ${colors.background};
   border-radius: 15px;
   padding: 8px;
-  margin-right: 16px;
 `;
 
 export const MenuButton = styled(RectButton)`

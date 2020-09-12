@@ -2,7 +2,7 @@ import React, { useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 
-// REDUX ACTIONS
+// ACTIONS
 import { signUp } from '../../store/modules/auth/actions';
 
 // CUSTOM IMPORTS
@@ -24,7 +24,6 @@ import {
 } from './styles';
 
 const SignUp = ({ navigation }) => {
-  // REDUCER
   const dispatch = useDispatch();
   const signing = useSelector((state) => state.auth.signing);
 
@@ -41,13 +40,17 @@ const SignUp = ({ navigation }) => {
 
       const schema = Yup.object().shape({
         name: Yup.string().required('O nome é obrigatório'),
-        email: Yup.string().required('O email é obrigatório'),
+        email: Yup.string().email('email inválido').required('O email é obrigatório'),
         password: Yup.string().required('A senha é obrigatória'),
       });
 
       await schema.validate(data, {
         abortEarly: false,
       });
+
+      const { name, email, password } = data;
+
+      dispatch(signUp(name, email, password));
     } catch (err) {
       // Format yup errors
       const errors = getYupErrors(err);
@@ -60,9 +63,7 @@ const SignUp = ({ navigation }) => {
   return (
     <Background>
       <Container>
-
         <Logo source={logo} />
-
         <Form ref={formRef} onSubmit={handleSignUp}>
           <FormTitle>Fazer Cadastro</FormTitle>
           <FormInput

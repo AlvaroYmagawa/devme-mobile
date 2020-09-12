@@ -43,7 +43,7 @@ const PostCell = ({ post, style }) => {
         {description}
       </Description>
 
-      <HelpButton fontAwesomeIcon="whatsapp">
+      <HelpButton fontAwesomeIcon="whatsapp" onPress={() => { alert('clcik'); }}>
         Entrar em contato
       </HelpButton>
     </Container>

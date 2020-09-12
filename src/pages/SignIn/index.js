@@ -2,14 +2,12 @@ import React, { useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 
-// REDUX ACTIONS
-import { signIn } from '../../store/modules/auth/actions';
-
 // CUSTOM IMPORTS
 import Background from '../../components/Background';
 import logo from '../../assets/logo.png';
 import { isDataValid } from '../../utils/validations';
 import { getYupErrors } from '../../utils/yup';
+import { signIn } from '../../store/modules/auth/actions';
 
 import {
   Container,
@@ -24,7 +22,6 @@ import {
 } from './styles';
 
 const Signin = ({ navigation }) => {
-  // REDUCER
   const dispatch = useDispatch();
   const signing = useSelector((state) => state.auth.signing);
 
@@ -39,7 +36,7 @@ const Signin = ({ navigation }) => {
       if (isDataValid(formRef.current)) formRef.current.setErrors({});
 
       const schema = Yup.object().shape({
-        email: Yup.string().required('O email é obrigatório'),
+        email: Yup.string().email('email inválido').required('O email é obrigatório'),
         password: Yup.string().required('A senha é obrigatória'),
       });
 
@@ -47,7 +44,8 @@ const Signin = ({ navigation }) => {
         abortEarly: false,
       });
 
-      dispatch(signIn());
+      // firebaseSignIn(data.email, data.password);
+      dispatch(signIn(data.email, data.password));
     } catch (err) {
       // Format yup errors
       const errors = getYupErrors(err);
@@ -60,9 +58,7 @@ const Signin = ({ navigation }) => {
   return (
     <Background>
       <Container>
-
         <Logo source={logo} />
-
         <Form ref={formRef} onSubmit={handleSignIn}>
           <FormTitle>Fazer Login</FormTitle>
           <FormInput
@@ -87,10 +83,11 @@ const Signin = ({ navigation }) => {
           />
 
           <SubmitButton
+            isLoading={signing}
             onPress={() => {
               if (formRef.current) formRef.current.submitForm();
             }}
-            isLoading={signing}
+
           >
             Fazer Login
           </SubmitButton>

@@ -18,7 +18,7 @@ import { colors } from '../../../../styles';
 const AddPostCard = ({ profile }) => (
   <Container>
     <ContainerTop>
-      <Avatar source={{ uri: profile.avatar }} />
+      {/* <Avatar source={{ uri: profile.avatar }} /> */}
       <TInput placeholder="Digite aqui sua dúvida." multiline />
     </ContainerTop>
 

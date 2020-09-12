@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSelector } from 'react-redux';
 import { MaterialIcons } from '@expo/vector-icons';
+import firebase from 'firebase';
 
 // CUSTOM IMPORTS
 import SignIn from '../pages/SignIn';
@@ -19,6 +20,23 @@ const Tab = createBottomTabNavigator();
 const Routes = () => {
   // REDUCER
   const signed = useSelector((state) => state.auth.signed);
+
+  // Set an initializing state whilst Firebase connects
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState();
+
+  // Handle user state changes
+  function onAuthStateChanged(user) {
+    setUser(user);
+    if (initializing) setInitializing(false);
+  }
+
+  useEffect(() => {
+    const subscriber = firebase.auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber; // unsubscribe on unmount
+  }, []);
+
+  if (initializing) return null;
 
   // FUNCTIONS
   const Sign = () => (
@@ -74,7 +92,7 @@ const Routes = () => {
 
   return (
     <NavigationContainer>
-      {signed ? <App /> : <Sign />}
+      {user ? <App /> : <Sign />}
 
     </NavigationContainer>
   );
