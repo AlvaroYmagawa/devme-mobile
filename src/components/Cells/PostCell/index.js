@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Linking } from 'react-native';
 
 // CUSTOM IMPORTS
 import {
@@ -22,6 +23,11 @@ const PostCell = ({ post, style }) => {
     title, description, created_at: createdAt, user, categories,
   } = post;
 
+  // FUNCTIONS
+  function openWhatsApp() {
+    Linking.openURL('https://wa.me/5543988209509');
+  }
+
   return (
     <Container style={style}>
       <Header>
@@ -43,7 +49,7 @@ const PostCell = ({ post, style }) => {
         {description}
       </Description>
 
-      <HelpButton fontAwesomeIcon="whatsapp" onPress={() => { alert('clcik'); }}>
+      <HelpButton fontAwesomeIcon="whatsapp" onPress={openWhatsApp}>
         Entrar em contato
       </HelpButton>
     </Container>

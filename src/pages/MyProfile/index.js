@@ -3,6 +3,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useSelector } from 'react-redux';
 
 // CUSTOM IMPORTS
+import AwesomeAlert from 'react-native-awesome-alerts';
 import Background from '../../components/Background';
 import { colors } from '../../styles';
 import { firebaseSignOut } from '../../services/firebase';
@@ -27,6 +28,9 @@ import {
 const MyProfile = () => {
   const profile = useSelector((state) => state.user.profile);
 
+  // STATES
+  const [showAlert, setShowAlert] = React.useState(false);
+
   const knowledges = [
     { id: 1, name: 'React Native', type: 'reactNative' },
     { id: 2, name: 'React.js', type: 'reactJs' },
@@ -37,7 +41,7 @@ const MyProfile = () => {
     <Background>
 
       <Container>
-        <ExitButton onPress={firebaseSignOut}>
+        <ExitButton onPress={() => setShowAlert(true)}>
           <ExitButtonText>Sair</ExitButtonText>
           <Ionicons name="md-exit" size={24} color={colors.text} />
         </ExitButton>
@@ -67,9 +71,25 @@ const MyProfile = () => {
             </Fieldset>
 
             <EditButton>Editar Perfil</EditButton>
-
           </Scroll>
         </Card>
+
+        <AwesomeAlert
+          show={showAlert}
+          showProgress={false}
+          title="Sair da aplicação"
+          message="Tem certeza que deseja desconectar?"
+          closeOnTouchOutside
+          showCancelButton
+          showConfirmButton
+          cancelText="Não"
+          confirmText="Sim"
+          cancelButtonColor={colors.accent}
+          confirmButtonColor={colors.text}
+          onDismiss={() => setShowAlert(false)}
+          onCancelPressed={() => setShowAlert(false)}
+          onConfirmPressed={firebaseSignOut}
+        />
 
       </Container>
     </Background>

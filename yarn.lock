@@ -6026,6 +6026,13 @@ react-native-appearance@~0.3.3:
     invariant "^2.2.4"
     use-subscription "^1.0.0"
 
+react-native-awesome-alerts@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-awesome-alerts/-/react-native-awesome-alerts-1.4.0.tgz#70f47ee88b9ad02cb2310b0991ccb6044f06e7c4"
+  integrity sha512-vNNtaeAC/75Q5qMQJN8pF/mLua5p5iJRU/lwt/1mQvf6Tik0CGiMjuhlF/uS7LoYWT4bF3tD+VrasNpLNOsY0w==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-native-flipper@^0.34.0:
   version "0.34.0"
   resolved "https://registry.yarnpkg.com/react-native-flipper/-/react-native-flipper-0.34.0.tgz#7df1f38ba5d97a9321125fe0fccbe47d99e6fa1d"
