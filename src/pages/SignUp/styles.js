@@ -19,7 +19,7 @@ export const Container = styled.KeyboardAvoidingView.attrs({
 `;
 
 export const Logo = styled.Image`
-  width: 180px;
+   width: 190px;
   height: 35px;
 `;
 
