@@ -1,10 +1,9 @@
 import produce from 'immer';
 import authTypes from '../auth/types';
+import types from './types';
 
 const INITIAL_STATE = {
-  profile: {
-    data: {},
-  },
+  profile: {},
 };
 
 export default function userReducer(state = INITIAL_STATE, action) {
@@ -16,8 +15,16 @@ export default function userReducer(state = INITIAL_STATE, action) {
         draft.profile = user;
         break;
       }
+
+      case types.update.SUCCESS: {
+        const { update } = action.payload;
+
+        draft.profile = { ...draft.profile, ...update };
+
+        break;
+      }
       case '@auth/SIGN_OUT': {
-        draft.profile.data = {};
+        draft.profile = {};
         break;
       }
       default:

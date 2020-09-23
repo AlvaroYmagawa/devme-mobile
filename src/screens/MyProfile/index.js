@@ -1,9 +1,12 @@
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+// ACTIONS
+import AwesomeAlert from 'react-native-awesome-alerts';
+import { signOut } from '../../store/modules/auth/actions';
 
 // CUSTOM IMPORTS
-import AwesomeAlert from 'react-native-awesome-alerts';
 import Background from '../../components/Background';
 import { colors } from '../../styles';
 import { firebaseSignOut } from '../../services/firebase';
@@ -26,6 +29,7 @@ import {
 } from './styles';
 
 const MyProfile = () => {
+  const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
 
   // STATES
@@ -39,7 +43,6 @@ const MyProfile = () => {
 
   return (
     <Background>
-
       <Container>
         <ExitButton onPress={() => setShowAlert(true)}>
           <ExitButtonText>Sair</ExitButtonText>
@@ -88,7 +91,11 @@ const MyProfile = () => {
           confirmButtonColor={colors.text}
           onDismiss={() => setShowAlert(false)}
           onCancelPressed={() => setShowAlert(false)}
-          onConfirmPressed={firebaseSignOut}
+          onConfirmPressed={() => {
+            firebaseSignOut().then(() => {
+              dispatch(signOut());
+            });
+          }}
         />
 
       </Container>

@@ -7,10 +7,11 @@ import { MaterialIcons } from '@expo/vector-icons';
 import firebase from 'firebase';
 
 // CUSTOM IMPORTS
-import SignIn from '../pages/SignIn';
-import SignUp from '../pages/SignUp';
-import Home from '../pages/Home';
-import MyProfile from '../pages/MyProfile';
+import SignIn from '../screens/SignIn';
+import SignUp from '../screens/SignUp';
+import Home from '../screens/Home';
+import MyProfile from '../screens/MyProfile';
+import CompleteProfile from '../screens/CompleteProfile';
 
 import { colors } from '../styles';
 
@@ -19,7 +20,7 @@ const Tab = createBottomTabNavigator();
 
 const Routes = () => {
   // REDUCER
-  const signed = useSelector((state) => state.auth.signed);
+  const isProfileCompleted = useSelector((state) => state.user.profile.displayName);
 
   // Set an initializing state whilst Firebase connects
   const [initializing, setInitializing] = useState(true);
@@ -39,12 +40,12 @@ const Routes = () => {
   if (initializing) return null;
 
   // FUNCTIONS
-  const Sign = () => (
+  const Auth = () => (
     <AppStack.Navigator
       headerMode="none"
       screenOptions={{
         cardStyle: {
-          backgroundColor: '#fff',
+          backgroundColor: colors.primaryDark,
         },
       }}
     >
@@ -53,7 +54,29 @@ const Routes = () => {
     </AppStack.Navigator>
   );
 
-  const App = () => (
+  const CompleteProfileStack = () => (
+    <AppStack.Navigator
+      headerMode="none"
+      screenOptions={{
+        cardStyle: {
+          backgroundColor: colors.primaryDark,
+        },
+        headerTitleStyle: {
+          color: colors.strongText,
+        },
+        headerStyle: {
+          borderBottomWidth: 1,
+          borderBottomColor: colors.primary,
+          backgroundColor: colors.primaryDark,
+          elevation: 0,
+        },
+      }}
+    >
+      <AppStack.Screen name="CompleteProfile" component={CompleteProfile} options={{ title: 'Complete seu perfil' }} />
+    </AppStack.Navigator>
+  );
+
+  const Signed = () => (isProfileCompleted ? (
     <Tab.Navigator
       headerMode
       screenOptions={({ route }) => ({
@@ -88,11 +111,11 @@ const Routes = () => {
       <Tab.Screen name="Home" component={Home} />
       <Tab.Screen name="MyProfile" component={MyProfile} />
     </Tab.Navigator>
-  );
+  ) : <CompleteProfileStack />);
 
   return (
     <NavigationContainer>
-      {user ? <App /> : <Sign />}
+      {user ? <Signed /> : <Auth />}
 
     </NavigationContainer>
   );

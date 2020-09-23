@@ -2,14 +2,12 @@ import React, { useRef, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 
-// ACTIONS
-import { signUp } from '../../store/modules/auth/actions';
-
 // CUSTOM IMPORTS
 import Background from '../../components/Background';
+import logo from '../../assets/logo.png';
 import { isDataValid } from '../../utils/validations';
 import { getYupErrors } from '../../utils/yup';
-import logo from '../../assets/logo.png';
+import { signIn } from '../../store/modules/auth/actions';
 
 import {
   Container,
@@ -23,23 +21,21 @@ import {
   SignLinkText,
 } from './styles';
 
-const SignUp = ({ navigation }) => {
+const Signin = ({ navigation }) => {
   const dispatch = useDispatch();
   const signing = useSelector((state) => state.auth.signing);
 
   // REFS
   const formRef = useRef(null);
-  const emailRef = useRef();
-  const passwordRef = useRef();
+  const passwordRef = useRef(null);
 
   // FUNCTIONS
-  const handleSignUp = useCallback(async (data) => {
+  const handleSignIn = useCallback(async (data) => {
     try {
       // Clear errors
       if (isDataValid(formRef.current)) formRef.current.setErrors({});
 
       const schema = Yup.object().shape({
-        name: Yup.string().required('O nome é obrigatório'),
         email: Yup.string().email('email inválido').required('O email é obrigatório'),
         password: Yup.string().required('A senha é obrigatória'),
       });
@@ -48,9 +44,8 @@ const SignUp = ({ navigation }) => {
         abortEarly: false,
       });
 
-      const { name, email, password } = data;
-
-      dispatch(signUp(name, email, password));
+      // firebaseSignIn(data.email, data.password);
+      dispatch(signIn(data.email, data.password));
     } catch (err) {
       // Format yup errors
       const errors = getYupErrors(err);
@@ -64,20 +59,9 @@ const SignUp = ({ navigation }) => {
     <Background>
       <Container>
         <Logo source={logo} />
-        <Form ref={formRef} onSubmit={handleSignUp}>
-          <FormTitle>Fazer Cadastro</FormTitle>
+        <Form ref={formRef} onSubmit={handleSignIn}>
+          <FormTitle>Fazer Login</FormTitle>
           <FormInput
-            name="name"
-            autoCorrect={false}
-            autoCapitalize="none"
-            placeholder="Nome completo"
-            icon="person"
-            returnKeyType="next"
-            onSubmitEditing={() => emailRef.current.focus()}
-          />
-
-          <FormInput
-            ref={emailRef}
             name="email"
             keyboardType="email-address"
             autoCorrect={false}
@@ -91,12 +75,11 @@ const SignUp = ({ navigation }) => {
           <FormInput
             ref={passwordRef}
             name="password"
+            style={{ marginTop: 8 }}
             placeholder="Digite sua senha"
             icon="lock"
             secureTextEntry
-            onSubmitEditing={() => {
-              if (formRef.current) formRef.current.submitForm();
-            }}
+
           />
 
           <SubmitButton
@@ -105,15 +88,14 @@ const SignUp = ({ navigation }) => {
               if (formRef.current) formRef.current.submitForm();
             }}
           >
-            Fazer cadastro
-
+            Fazer Login
           </SubmitButton>
         </Form>
 
-        <Text>Ja possuí uma conta?</Text>
+        <Text>Aínda não possuí uma conta?</Text>
 
-        <SignLink onPress={() => navigation.navigate('SignIn')}>
-          <SignLinkText>Fazer login</SignLinkText>
+        <SignLink onPress={() => navigation.navigate('SignUp')}>
+          <SignLinkText>Criar conta</SignLinkText>
         </SignLink>
 
       </Container>
@@ -121,4 +103,4 @@ const SignUp = ({ navigation }) => {
   );
 };
 
-export default SignUp;
+export default Signin;

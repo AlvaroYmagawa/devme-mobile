@@ -17,7 +17,7 @@ export const initializeFirebase = () => {
   }
 };
 
-export const firebaseSignOut = () => firebase.auth()
+export const firebaseSignOut = async () => firebase.auth()
   .signOut();
 
 export const firebaseSignIn = (email, password) => firebase.auth()
