@@ -30,7 +30,7 @@ export function* signUp({ payload }) {
 
     const response = yield firebaseSignUp(email, password);
 
-    yield put(signUpSuccess(user));
+    yield put(signUpSuccess(response.user));
   } catch (err) {
     yield put(signUpFailed());
     showErrors(err);

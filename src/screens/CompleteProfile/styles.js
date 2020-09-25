@@ -26,9 +26,12 @@ export const styles = StyleSheet.create({
     width: 260,
     marginBottom: 40,
   },
+  form: {
+    marginTop: 24,
+  },
   input: {
     width: '100%',
-    marginTop: 32,
+    marginTop: 8,
   },
   button: {
     marginTop: 8,

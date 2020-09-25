@@ -9,7 +9,9 @@ const INITIAL_STATE = {
 export default function userReducer(state = INITIAL_STATE, action) {
   return produce(state, (draft) => {
     switch (action.type) {
-      case authTypes.signIn.SUCCESS: {
+      case authTypes.signIn.SUCCESS:
+      case authTypes.signUp.SUCCESS:
+      {
         const { user } = action.payload;
 
         draft.profile = user;

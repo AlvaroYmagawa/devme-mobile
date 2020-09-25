@@ -20,10 +20,10 @@ export function signInFailure() {
 }
 
 // SIGN UP
-export function signUp(name, email, password) {
+export function signUp({ email, password }) {
   return {
     type: types.signUp.REQUEST,
-    payload: { name, email, password },
+    payload: { email, password },
   };
 }
 export function signUpSuccess(user) {

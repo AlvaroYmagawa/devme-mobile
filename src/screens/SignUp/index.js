@@ -47,9 +47,9 @@ const SignUp = ({ navigation }) => {
         abortEarly: false,
       });
 
-      const { name, email, password } = data;
+      const { email, password } = data;
 
-      dispatch(signUp(name, email, password));
+      dispatch(signUp({ email, password }));
     } catch (err) {
       // Format yup errors
       const errors = getYupErrors(err);

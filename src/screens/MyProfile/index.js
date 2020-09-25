@@ -11,6 +11,7 @@ import Background from '../../components/Background';
 import { colors } from '../../styles';
 import { firebaseSignOut } from '../../services/firebase';
 import noAvatar from '../../assets/noAvatar.png';
+import EditProfileModal from './EditProfile';
 import {
   Container,
   Scroll,
@@ -31,9 +32,11 @@ import {
 const MyProfile = () => {
   const dispatch = useDispatch();
   const profile = useSelector((state) => state.user.profile);
+  const { displayName, phoneNumber } = profile;
 
   // STATES
   const [showAlert, setShowAlert] = React.useState(false);
+  const [showModal, setShowModal] = React.useState(false);
 
   const knowledges = [
     { id: 1, name: 'React Native', type: 'reactNative' },
@@ -50,14 +53,23 @@ const MyProfile = () => {
         </ExitButton>
 
         <Card>
-          <Avatar source={noAvatar} />
+          <Avatar source={profile.photoURL ? { uri: profile.photoURL } : noAvatar} />
           <Scroll>
-            <UserName>Kenzo Ymagawa</UserName>
+            <UserName>{displayName}</UserName>
             <Role>Frontend DEV</Role>
 
             <FieldsetKnowledges>
               <Knowledges accentTheme list={knowledges} />
             </FieldsetKnowledges>
+
+            {phoneNumber && (
+            <Fieldset>
+              <FieldsetTitle>Celular</FieldsetTitle>
+              <Bio>
+                {phoneNumber}
+              </Bio>
+            </Fieldset>
+            ) }
 
             <Fieldset>
               <FieldsetTitle>Bio</FieldsetTitle>
@@ -73,7 +85,7 @@ const MyProfile = () => {
               </Bio>
             </Fieldset>
 
-            <EditButton>Editar Perfil</EditButton>
+            <EditButton onPress={() => setShowModal(true)}>Editar Perfil</EditButton>
           </Scroll>
         </Card>
 
@@ -99,6 +111,12 @@ const MyProfile = () => {
         />
 
       </Container>
+
+      <EditProfileModal
+        isVisible={showModal}
+        onClose={() => setShowModal(false)}
+        profile={profile}
+      />
     </Background>
   );
 };
