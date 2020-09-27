@@ -5,21 +5,20 @@ import * as ExpoImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux';
-import firebase from 'firebase';
 
 // ACTIONS
 import { updateUserSuccessful } from '../../store/modules/user/actions';
 
 // CUSTOM IMPORTS
-import noAvatar from '../../assets/noAvatar.png';
 import { colors } from '../../styles';
 import {
   Container,
   ImagePreviewButton,
-  ImagePreview,
+  styles,
   ImageLoader,
   CameraIcon,
 } from './styles';
+import Avatar from '../Avatar';
 
 const AvatarImagePicker = ({ style, setAvatarUrl, initialValue }) => {
   const dispatch = useDispatch();
@@ -74,7 +73,7 @@ const AvatarImagePicker = ({ style, setAvatarUrl, initialValue }) => {
             <ActivityIndicator size="large" color={colors.accent} />
           </ImageLoader>
         ) : (
-          <ImagePreview source={image ? { uri: image } : noAvatar} />
+          <Avatar style={styles.imagePreview} source={{ uri: image }} iconSize={70} />
         )}
 
         <CameraIcon>

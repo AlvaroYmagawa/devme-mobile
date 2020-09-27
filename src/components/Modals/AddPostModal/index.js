@@ -1,26 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
-  View, Text, Image, TouchableOpacity,
+  View, Text, TouchableOpacity,
 } from 'react-native';
 import Modal from 'react-native-modal';
 import { Form } from '@unform/mobile';
 import * as Yup from 'yup';
 import { useSelector } from 'react-redux';
-import Input from '../../../../Input';
+import Input from '../../Input';
 
 // APIs
-import { createPost } from '../../../../../apis/posts';
+import { createPost } from '../../../apis/posts';
 
 // CUSTOM IMPORTS
 import { styles } from './styles';
-import noAvatar from '../../../../../assets/noAvatar.png';
-import { colors } from '../../../../../styles';
-import Button from '../../../../Button';
-import { isDataValid } from '../../../../../utils/validations';
-import { getYupErrors } from '../../../../../utils/yup';
+import Avatar from '../../Avatar';
+import { colors } from '../../../styles';
+import Button from '../../Button';
+import { isDataValid } from '../../../utils/validations';
+import { getYupErrors } from '../../../utils/yup';
 
-const AddPostModal = ({ isVisible, onClose, selectedCategory }) => {
+const AddPostModal = ({
+  isVisible, onClose, selectedCategory, post,
+}) => {
   const profile = useSelector((state) => state.user.profile);
+  const isEditMode = post;
 
   // REFS
   const formRef = React.useRef(null);
@@ -85,9 +89,9 @@ const AddPostModal = ({ isVisible, onClose, selectedCategory }) => {
           <Text style={styles.title}>Criar Publicação</Text>
 
           <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 24 }}>
-            <Image
+            <Avatar
               style={styles.avatar}
-              source={profile.photoURL ? { uri: profile.photoURL } : noAvatar}
+              source={{ uri: profile.photoURL }}
             />
             <View style={{ marginLeft: 8 }}>
               <Text style={styles.userName}>{profile.displayName}</Text>
@@ -135,6 +139,14 @@ const AddPostModal = ({ isVisible, onClose, selectedCategory }) => {
       </Form>
     </Modal>
   );
+};
+
+AddPostModal.propTypes = {
+  post: PropTypes.oneOfType([PropTypes.object]),
+};
+
+AddPostModal.defaultProps = {
+  post: null,
 };
 
 export default AddPostModal;

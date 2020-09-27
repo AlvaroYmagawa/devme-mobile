@@ -26,3 +26,11 @@ export function craetePostSuccessful({ post }) {
     payload: { post },
   };
 }
+
+// DELETE
+export function deletePostSuccessful({ postId }) {
+  return {
+    type: types.DELETE.SUCCESS,
+    payload: { postId },
+  };
+}

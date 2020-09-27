@@ -3,7 +3,7 @@ import { showErrors } from '../../utils/apiUtils';
 
 // ACTIONS
 import { store } from '../../store';
-import { craetePostSuccessful } from '../../store/modules/posts/actions';
+import { craetePostSuccessful, deletePostSuccessful } from '../../store/modules/posts/actions';
 
 export async function fetchPosts({ setPosts, setIsLoaded }) {
   await api.get('/posts').then((response) => {
@@ -28,5 +28,20 @@ export async function createPost({ setIsLoading, onClose, postData }) {
       showErrors(err);
       setIsLoading(false);
     });
-  }, 3000);
+  }, 2000);
+}
+
+export async function deletePost({ setIsLoading, postId }) {
+  setIsLoading(true);
+
+  setTimeout(async () => {
+    await api.delete(`/posts/${postId}`).then(() => {
+      store.dispatch(deletePostSuccessful({ postId }));
+
+      setIsLoading(false);
+    }).catch((err) => {
+      showErrors(err);
+      setIsLoading(false);
+    });
+  }, 2000);
 }

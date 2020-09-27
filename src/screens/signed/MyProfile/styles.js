@@ -1,9 +1,11 @@
 import styled from 'styled-components/native';
+import { StyleSheet } from 'react-native';
 
 // CUSTOM IMPORTS
 import { colors } from '../../../styles';
 import Categories from '../../../components/Lists/CategoryList';
 import Button from '../../../components/Button';
+import CustomAvatar from '../../../components/Avatar';
 
 export const Container = styled.View`
   padding: 0 16px;
@@ -49,16 +51,17 @@ export const HeaderTitle = styled.Text`
   font-size: 16px;
 `;
 
-export const Avatar = styled.Image`
-  position: absolute;
-  top: -60px;
-  height: 120px;
-  width: 120px;
-  align-self: center;
-  border-radius: 60px;
-  elevation: 5;
-  border: 3px solid ${colors.accent};
-`;
+export const styles = StyleSheet.create({
+  avatar: {
+    position: 'absolute',
+    top: -60,
+    height: 120,
+    width: 120,
+    borderRadius: 60,
+    alignSelf: 'center',
+    elevation: 5,
+  },
+});
 
 export const Fieldset = styled.View`
    margin-top: 24px;

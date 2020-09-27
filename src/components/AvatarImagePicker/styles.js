@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { StyleSheet } from 'react-native';
 
 // CUSTOM IMPORTS
 import { colors } from '../../styles';
@@ -11,12 +12,15 @@ export const ImagePreviewButton = styled.TouchableOpacity.attrs({
   width: 120px;
 `;
 
-export const ImagePreview = styled.Image`
-  height: 120px;
-  width: 120px;
-  border-radius: 60px;
-  border: 3px solid ${colors.primary};
-`;
+export const styles = StyleSheet.create({
+  imagePreview: {
+    height: 120,
+    width: 120,
+    borderRadius: 60,
+    borderWidth: 3,
+    borderColor: colors.primaryDark,
+  },
+});
 
 export const ImageLoader = styled.View`
   height: 100px;

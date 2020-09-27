@@ -10,14 +10,14 @@ import { signOut } from '../../../store/modules/auth/actions';
 import Background from '../../../components/Background';
 import { colors } from '../../../styles';
 import { firebaseSignOut } from '../../../services/firebase';
-import noAvatar from '../../../assets/noAvatar.png';
 import EditProfileModal from './EditProfile';
+import Avatar from '../../../components/Avatar';
+
 import {
   Container,
   Scroll,
   Card,
   EditButton,
-  Avatar,
   Fieldset,
   FieldsetKnowledges,
   FieldsetTitle,
@@ -27,6 +27,7 @@ import {
   Knowledges,
   ExitButton,
   ExitButtonText,
+  styles,
 } from './styles';
 
 const MyProfile = () => {
@@ -53,7 +54,11 @@ const MyProfile = () => {
         </ExitButton>
 
         <Card>
-          <Avatar source={profile.photoURL ? { uri: profile.photoURL } : noAvatar} />
+          <Avatar
+            source={{ uri: profile.photoURL }}
+            style={styles.avatar}
+            iconSize={80}
+          />
           <Scroll>
             <UserName>{displayName}</UserName>
             <Role>Frontend DEV</Role>

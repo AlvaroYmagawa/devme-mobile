@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 // CUSTOM IMPORTS
-import { colors } from '../../../../../styles';
+import { colors } from '../../../styles';
 
 export const styles = StyleSheet.create({
   backdrop: {

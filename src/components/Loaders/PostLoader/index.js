@@ -8,7 +8,7 @@ import {
 } from 'rn-placeholder';
 
 // CUSTOM IMPORTS
-import { colors } from '../../../../styles';
+import { colors } from '../../../styles';
 
 const Loader = () => (
   <Placeholder

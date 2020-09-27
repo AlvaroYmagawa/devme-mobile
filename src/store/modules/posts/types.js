@@ -7,6 +7,9 @@ const types = {
   CREATE: {
     SUCCESS: '@posts/CREATE_REQUEST',
   },
+  DELETE: {
+    SUCCESS: '@posts/DELETE_REQUEST',
+  },
 };
 
 export default types;

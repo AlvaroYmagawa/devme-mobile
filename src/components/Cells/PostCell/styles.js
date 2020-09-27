@@ -18,19 +18,13 @@ export const Header = styled.View`
 `;
 
 export const HeaderLeft = styled.View`
-`;
-
-export const Avatar = styled.Image`
-  height: 40px;
-  width: 40px;
-  margin-right: 8px;
-  border-radius: 20px;
+  flex: 1;
 `;
 
 export const UserName = styled.Text`
   font-size: 14px;
   font-weight: bold;
-  color: ${colors.text};
+  color: ${colors.strongText};
 `;
 
 export const CreatedAt = styled.Text`
@@ -41,7 +35,7 @@ export const CreatedAt = styled.Text`
 export const Title = styled.Text`
   font-size: 16px;
   font-weight: bold;
-  color: ${colors.text};
+  color: ${colors.strongText};
 `;
 
 export const Categories = styled.View`

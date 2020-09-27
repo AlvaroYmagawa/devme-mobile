@@ -39,10 +39,3 @@ export const InputButton = styled.TouchableOpacity.attrs({
 export const Text = styled.Text`
   color: ${colors.primary};
 `;
-
-export const Avatar = styled.Image`
-  height: 40px;
-  width: 40px;
-  margin-right: 8px;
-  border-radius: 20px;
-`;

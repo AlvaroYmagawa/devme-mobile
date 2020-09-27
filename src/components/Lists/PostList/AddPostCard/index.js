@@ -4,12 +4,11 @@ import React from 'react';
 import {
   Container,
   ContainerTop,
-  Avatar,
   InputButton,
   Text,
 } from './styles';
-import noAvatar from '../../../../assets/noAvatar.png';
 import AddModal from './AddPostModal';
+import Avatar from '../../../Avatar';
 
 const AddPostCard = ({ profile, selectedCategory }) => {
   // STATES
@@ -19,7 +18,7 @@ const AddPostCard = ({ profile, selectedCategory }) => {
     <>
       <Container>
         <ContainerTop>
-          <Avatar source={profile.photoURL ? { uri: profile.photoURL } : noAvatar} />
+          <Avatar source={{ uri: profile.photoURL }} style={{ marginRight: 8 }} />
 
           <InputButton onPress={() => setShowModal(true)}>
             <Text>Digite aqui sua dúvida</Text>

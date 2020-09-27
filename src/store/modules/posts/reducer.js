@@ -44,6 +44,17 @@ export default function postsReducer(state = INITIAL_STATE, action) {
         break;
       }
 
+      // DELETE
+      case types.DELETE.SUCCESS: {
+        const { postId } = action.payload;
+
+        const filteredArray = draft.list.data.filter((obj) => obj.id !== postId);
+
+        draft.list.data = filteredArray;
+
+        break;
+      }
+
       case '@auth/SIGN_OUT': {
         draft.list.data = [];
         draft.list.isLoaded = false;
