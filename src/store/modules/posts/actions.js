@@ -1,9 +1,10 @@
 import types from './types';
 
 // LIST
-export function listPosts() {
+export function listPosts(categoryId) {
   return {
     type: types.LIST.REQUEST,
+    payload: { categoryId },
   };
 }
 export function listPostsSuccessful(posts) {

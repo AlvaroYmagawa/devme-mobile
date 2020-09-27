@@ -1,0 +1,48 @@
+{
+  "posts": [ {
+    "id": 1,
+    "category_id": 2,
+    "title": "Ajuda com CSS no React.js",
+    "created_at": "1min atrás",
+    "user": {
+      "name": "Kenzo Ymagawa",
+      "avatar": "https://scontent.fldb3-1.fna.fbcdn.net/v/t1.0-9/80002404_2606722342777801_5492740259315712000_o.jpg?_nc_cat=110&_nc_sid=09cbfe&_nc_eui2=AeFbxP5SJpvLoUhH7r4uz-36MyqFh_iPEN8zKoWH-I8Q3_YwE5WmaSOgpfrq44M4vwylJa4ydN2OPSfbodCB7Dir&_nc_ohc=meYjR1pk2ikAX_awLrO&_nc_ht=scontent.fldb3-1.fna&oh=f58daf3c5e7e704adbdfd3641243bb6a&oe=5F9548D3"
+    },
+    "description": "Boa tarde, gostaria de ajuda oara aplicar CSS no React.js",
+    "categories": [
+      {
+        "id": 1, "name": "React.js", "type": "reactJs", "color": "#264de4"
+      },
+      {
+        "id": 2, "name": "CSS", "type": "css", "color": "#264de4"
+      }
+    ]
+  }, {
+    "id": 2,
+    "category_id": 3,
+    "title": "Node.js ou PHP oque devo escolher?",
+    "created_at": "10min atrás",
+    "user": {
+      "name": "João da Silva",
+      "avatar": "https://web.whatsapp.com/pp?e=https%3A%2F%2Fpps.whatsapp.net%2Fv%2Ft61.24694-24%2F76820369_257301125271631_8903249730788948206_n.jpg%3Foh%3D1be7b128ba62800dea74511ee1c56f56%26oe%3D5F748D22&t=l&u=5516997421159%40c.us&i=1584829226&n=RWvQRvYraLomXMLAetwlOTSzujRIgV8itrt%2BsG0x7H4%3D"
+    },
+    "description": "Sou iniciante na área de programação backend, e gostaria de saber qual a opinião de desenvolvedores backend experientes sobre o PHP e o Node.js.",
+    "categories": [
+      {
+        "id": 1, "name": "Node.js", "type": "nodeJs", "color": "#264de4"
+      },
+      {
+        "id": 2, "name": "PHP", "type": "php", "color": "#264de4"
+      }
+    ]
+  }],
+  "categories": [
+    { "id": 1, "name": "React Native", "type": "reactNative" },
+    { "id": 2, "name": "React.js", "type": "reactJs" },
+    { "id": 3, "name": "Node.js", "type": "nodeJs" },
+    { "id": 4, "name": "Vue.js", "type": "vueJs" },
+    { "id": 5, "name": "Javascript", "type": "javascript" },
+    { "id": 6, "name": "CSS", "type": "css" },
+    { "id": 7, "name": "Git", "type": "git" }
+  ]
+}

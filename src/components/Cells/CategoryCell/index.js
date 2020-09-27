@@ -1,16 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TouchableOpacity } from 'react-native';
+import { useDispatch } from 'react-redux';
+
+// ACTIONS
+import { Fontisto, Ionicons, FontAwesome } from '@expo/vector-icons';
+import { listPosts } from '../../../store/modules/posts/actions';
 
 // ICONS
-import { Fontisto, Ionicons, FontAwesome } from '@expo/vector-icons';
 
 // CUSTOM IMPORTS
 import { Container, Card, Name } from './styles';
 import { colors } from '../../../styles';
 
-const CategoryCell = ({ category, accentTheme }) => {
+const CategoryCell = ({
+  category, accentTheme, isActive, setSelectedCategory,
+}) => {
   const { name, type } = category;
+  const dispatch = useDispatch();
 
   // STATE
   const [isPress, setIsPress] = React.useState(false);
@@ -19,9 +25,15 @@ const CategoryCell = ({ category, accentTheme }) => {
   function setIconColor() {
     if (accentTheme) return colors.primaryDark;
 
-    if (isPress) return colors.accent;
+    if (isPress || isActive) return colors.accent;
 
     return colors.text;
+  }
+
+  function handleClick() {
+    setSelectedCategory(category);
+
+    dispatch(listPosts(category.id));
   }
 
   const iconColor = setIconColor();
@@ -43,6 +55,7 @@ const CategoryCell = ({ category, accentTheme }) => {
         return <Ionicons name="logo-javascript" size={24} color={iconColor} />;
       case 'css':
         return <FontAwesome name="css3" size={24} color={iconColor} />;
+      case 'nodeJs': return <Ionicons name="logo-nodejs" size={24} color={iconColor} />;
 
       default:
     }
@@ -53,13 +66,14 @@ const CategoryCell = ({ category, accentTheme }) => {
       <Card
         accentTheme={accentTheme}
         activeOpacity={1}
+        onPress={handleClick}
         onPressIn={() => setIsPress(true)}
         onPressOut={() => setIsPress(false)}
       >
         {renderIcon()}
       </Card>
 
-      <Name isPress={isPress} accentTheme={accentTheme}>{name}</Name>
+      <Name isPress={isPress || isActive} accentTheme={accentTheme}>{name}</Name>
     </Container>
   );
 };

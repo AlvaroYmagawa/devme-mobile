@@ -3,7 +3,6 @@ import styled from 'styled-components/native';
 // CUSTOM IMPORTS
 import PostCell from '../../Cells/PostCell';
 import CategoryList from '../CategoryList';
-import { colors } from '../../../styles';
 
 export const Container = styled.FlatList`
   padding: 0 8px;
@@ -14,5 +13,5 @@ export const Categories = styled(CategoryList)`
 `;
 
 export const Post = styled(PostCell)`
-  margin-top: 16px;
+  margin-bottom: 16px;
 `;

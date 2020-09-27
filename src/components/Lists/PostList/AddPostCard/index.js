@@ -1,45 +1,40 @@
 import React from 'react';
-import { FontAwesome } from '@expo/vector-icons';
 
 // CUSTOM IMPORTS
 import {
   Container,
   ContainerTop,
-  ContainerBottom,
   Avatar,
-  TInput,
-  PublishButton,
-  MiniText,
+  InputButton,
   Text,
-  CategoriesButton,
 } from './styles';
-import { colors } from '../../../../styles';
+import noAvatar from '../../../../assets/noAvatar.png';
+import AddModal from './AddPostModal';
 
-const AddPostCard = ({ profile }) => (
-  <Container>
-    <ContainerTop>
-      {/* <Avatar source={{ uri: profile.avatar }} /> */}
-      <TInput placeholder="Digite aqui sua dúvida." multiline />
-    </ContainerTop>
+const AddPostCard = ({ profile, selectedCategory }) => {
+  // STATES
+  const [showModal, setShowModal] = React.useState(false);
 
-    <ContainerBottom>
-      <CategoriesButton>
-        <FontAwesome
-          name="plus-circle"
-          size={16}
-          color={colors.accent}
-          style={{ marginRight: 8 }}
-        />
-        <MiniText>Adicionar Categoria</MiniText>
-      </CategoriesButton>
+  return (
+    <>
+      <Container>
+        <ContainerTop>
+          <Avatar source={profile.photoURL ? { uri: profile.photoURL } : noAvatar} />
 
-      <PublishButton>
-        Publicar
-      </PublishButton>
+          <InputButton onPress={() => setShowModal(true)}>
+            <Text>Digite aqui sua dúvida</Text>
+          </InputButton>
+        </ContainerTop>
 
-    </ContainerBottom>
+      </Container>
 
-  </Container>
-);
+      <AddModal
+        isVisible={showModal}
+        onClose={() => setShowModal(false)}
+        selectedCategory={selectedCategory}
+      />
+    </>
+  );
+};
 
 export default AddPostCard;

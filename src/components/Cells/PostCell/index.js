@@ -16,7 +16,6 @@ import {
   Description,
   HelpButton,
 } from './styles';
-import { colors } from '../../../styles';
 
 const PostCell = ({ post, style }) => {
   const {

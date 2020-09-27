@@ -4,6 +4,8 @@ const colors = {
   accent: '#4ecca3',
   background: '#232931',
 
+  contentLoader: '#393e4650',
+
   strongText: '#f6f6f6',
   text: '#aaa',
   opaquetText: '#aaaaaa66',
