@@ -1,9 +1,5 @@
 import { ToastAndroid } from 'react-native';
 
-// CUSTOM IMPORTS
-import { store } from '../store';
-import { signOut } from '../store/modules/auth/actions';
-
 function ResponseException(message) {
   this.message = message;
   this.name = 'ResponseException';

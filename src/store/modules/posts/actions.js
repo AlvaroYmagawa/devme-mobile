@@ -18,3 +18,11 @@ export function listPostsFailed() {
     type: types.LIST.FAILED,
   };
 }
+
+// CRAETE
+export function craetePostSuccessful({ post }) {
+  return {
+    type: types.CREATE.SUCCESS,
+    payload: { post },
+  };
+}

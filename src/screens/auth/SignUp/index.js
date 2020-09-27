@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 
 // ACTIONS
-import { signUp } from '../../store/modules/auth/actions';
+import { signUp } from '../../../store/modules/auth/actions';
 
 // CUSTOM IMPORTS
-import Background from '../../components/Background';
-import { isDataValid } from '../../utils/validations';
-import { getYupErrors } from '../../utils/yup';
-import logo from '../../assets/logo.png';
+import Background from '../../../components/Background';
+import { isDataValid } from '../../../utils/validations';
+import { getYupErrors } from '../../../utils/yup';
+import logo from '../../../assets/logo.png';
 
 import {
   Container,
@@ -67,6 +67,7 @@ const SignUp = ({ navigation }) => {
           <FormTitle>Fazer Cadastro</FormTitle>
 
           <FormInput
+            title="Email"
             ref={emailRef}
             name="email"
             keyboardType="email-address"
@@ -79,6 +80,7 @@ const SignUp = ({ navigation }) => {
           />
 
           <FormInput
+            title="Senha"
             ref={passwordRef}
             name="password"
             placeholder="Digite sua senha"

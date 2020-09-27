@@ -1,34 +1,44 @@
 import styled, { css } from 'styled-components/native';
+
+// CUSTOM IMPORTS
 import { colors } from '../../styles';
 
 export const Container = styled.View`
-  padding: 0 16px;
-  height: 56px;
-  border-radius: 16px;
-  background: ${colors.primary};
+  elevation: 1000;
+`;
 
-  align-items: center;
+export const Title = styled.Text`
+  font-size: 12px;
+  font-weight: bold;
+  color: ${colors.accent};
+`;
+
+export const Fieldset = styled.View`
+  margin-top: 4px;
   flex-direction: row;
-  border-width: 2px;
-  border-color: ${colors.primary}
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 8px;
+  background: ${colors.primary};
+  border: 1.3px solid ${colors.primary};
 
-  ${(props) => props.isFocused && css`
-    border-color: ${colors.accent}
-  `}
+  ${(props) => props.error
+    && css`
+      border-color: red;
+    `};
 
-  ${(props) => props.error && css`
-    border-color: red
-  `}
+  ${(props) => props.isFocused
+    && css`
+      border-color: ${colors.accent};
+    `}
 `;
 
 export const TInput = styled.TextInput.attrs({
-  placeholderTextColor: colors.primaryDark,
+  placeholderTextColor: colors.text,
 })`
+  min-height: 48px;
+  color: ${colors.whiteSmoke};
   flex: 1;
-  margin-left: 16px;
-  color: #fff;
 `;
 
-export const ErrorMessage = styled.Text`
-  color: red;
-`;
+export const EyeButton = styled.TouchableOpacity``;

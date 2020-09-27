@@ -1,17 +1,23 @@
 import React, {
-  useState, forwardRef, useEffect, useRef, useImperativeHandle, useCallback,
+  useState,
+  forwardRef,
+  useEffect,
+  useRef,
+  useImperativeHandle,
 } from 'react';
-import { MaterialIcons } from '@expo/vector-icons';
 import PropTypes from 'prop-types';
 import { useField } from '@unform/core';
+import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 // CUSTOM IMPORTS
-import { Container, TInput, ErrorMessage } from './styles';
-import { colors } from '../../styles';
+import {
+  Container, Title, Fieldset, TInput, EyeButton,
+} from './styles';
 import ErrorTip from './ErrorTip';
+import { colors } from '../../styles';
 
 // eslint-disable-next-line object-curly-newline
-const Input = ({ style, name, icon, ...rest }, ref) => {
+const Input = ({ style, title, name, isPassword, icon, ...rest }, ref) => {
   const {
     registerField, defaultValue, fieldName, error,
   } = useField(name);
@@ -23,7 +29,8 @@ const Input = ({ style, name, icon, ...rest }, ref) => {
   // STATES
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
-  const [showTip, setShowTip] = React.useState(false);
+
+  const [showPassword, setShowPassword] = React.useState(false);
 
   // FUNCTIONS
   useEffect(() => {
@@ -59,16 +66,18 @@ const Input = ({ style, name, icon, ...rest }, ref) => {
   };
 
   return (
-    <>
-      <Container style={style} isFocused={isFocused} error={!!error}>
-        {icon && (
-        <MaterialIcons
-          name={icon}
-          size={24}
-          color={isFocused || isFilled ? colors.accent : colors.primaryDark}
-        />
-        )}
+    <Container style={style}>
+      {title && <Title>{title}</Title>}
 
+      <Fieldset isFocused={isFocused} error={!!error}>
+        {icon && (
+          <MaterialIcons
+            name={icon}
+            size={24}
+            color={isFilled ? colors.accent : colors.text}
+            style={{ marginRight: 16 }}
+          />
+        )}
         <TInput
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
@@ -77,26 +86,37 @@ const Input = ({ style, name, icon, ...rest }, ref) => {
           onChangeText={(value) => {
             inputValueRef.current.value = value;
           }}
+          secureTextEntry={isPassword && !showPassword}
           {...rest}
         />
 
-        {error && <ErrorTip error={error} showTip={showTip} setShowTip={setShowTip} />}
-      </Container>
+        {isPassword && (
+          <EyeButton onPress={() => setShowPassword(!showPassword)}>
+            <MaterialCommunityIcons
+              name={showPassword ? 'eye-outline' : 'eye-off-outline'}
+              size={24}
+              color={colors.accent}
+            />
+          </EyeButton>
+        )}
 
-      {error && showTip && <ErrorMessage>{error}</ErrorMessage>}
-    </>
+        {error && <ErrorTip error={error} />}
+      </Fieldset>
+    </Container>
   );
 };
 
 Input.propTypes = {
-  icon: PropTypes.string,
+  title: PropTypes.string,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   name: PropTypes.string.isRequired,
+  isPassword: PropTypes.bool,
 };
 
 Input.defaultProps = {
-  icon: null,
+  title: null,
   style: {},
+  isPassword: false,
 };
 
 export default forwardRef(Input);

@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
   },
 
   container: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.primaryDark,
     borderRadius: 16,
     padding: 16,
   },
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     borderBottomWidth: 1,
     paddingBottom: 16,
-    borderBottomColor: colors.primaryDark,
+    borderBottomColor: colors.primary,
     marginBottom: 16,
   },
   userName: {
@@ -34,13 +34,6 @@ export const styles = StyleSheet.create({
     width: 47,
     borderRadius: 30,
   },
-  textArea: {
-    borderRadius: 8,
-    backgroundColor: colors.primaryDark,
-    color: colors.text,
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-  },
   tag: {
     backgroundColor: colors.accent,
     paddingVertical: 4,
@@ -49,13 +42,5 @@ export const styles = StyleSheet.create({
     color: colors.primary,
     elevation: 5,
     borderRadius: 24,
-  },
-  fieldset: {
-    marginBottom: 8,
-  },
-  fieldsetTitle: {
-    color: colors.text,
-    marginBottom: 4,
-    fontWeight: 'bold',
   },
 });

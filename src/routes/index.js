@@ -7,13 +7,16 @@ import { MaterialIcons } from '@expo/vector-icons';
 import firebase from 'firebase';
 
 // CUSTOM IMPORTS
-import SignIn from '../screens/SignIn';
-import SignUp from '../screens/SignUp';
-import Home from '../screens/Home';
-import MyProfile from '../screens/MyProfile';
-import CompleteProfile from '../screens/CompleteProfile';
-
 import { colors } from '../styles';
+
+// AUTH
+import SignIn from '../screens/auth/SignIn';
+import SignUp from '../screens/auth/SignUp';
+import CompleteProfile from '../screens/auth/CompleteProfile';
+
+// SIGNED
+import Home from '../screens/signed/Home';
+import MyProfile from '../screens/signed/MyProfile';
 
 const AppStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -42,9 +45,16 @@ const Routes = () => {
   // FUNCTIONS
   const Auth = () => (
     <AppStack.Navigator
-      headerMode="none"
       screenOptions={{
         cardStyle: {
+          backgroundColor: colors.primaryDark,
+        },
+        headerTintColor: colors.strongText,
+        headerTitleStyle: {
+          display: 'none',
+        },
+        headerStyle: {
+          elevation: 0,
           backgroundColor: colors.primaryDark,
         },
       }}

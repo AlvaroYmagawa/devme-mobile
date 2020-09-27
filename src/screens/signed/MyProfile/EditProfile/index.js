@@ -9,14 +9,14 @@ import { useDispatch } from 'react-redux';
 import firebase from 'firebase';
 
 // ACTIONS
-import { updateUserSuccessful } from '../../../store/modules/user/actions';
+import { updateUserSuccessful } from '../../../../store/modules/user/actions';
 
 // CUSTOM IMPORTS
-import Input from '../../../components/Input';
-import ImagePicker from '../../../components/AvatarImagePicker';
+import Input from '../../../../components/Input';
+import ImagePicker from '../../../../components/AvatarImagePicker';
 import { styles } from './styles';
-import { isDataValid } from '../../../utils/validations';
-import { getYupErrors } from '../../../utils/yup';
+import { isDataValid } from '../../../../utils/validations';
+import { getYupErrors } from '../../../../utils/yup';
 
 const EditProfile = ({ isVisible, onClose, profile }) => {
   const formRef = React.useRef();

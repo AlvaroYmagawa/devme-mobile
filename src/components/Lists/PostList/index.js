@@ -18,7 +18,7 @@ const PostList = ({ style }) => {
   const { data: posts, isLoaded } = useSelector((state) => state.posts.list);
 
   // STATES
-  const [selectedCategory, setSelectedCategory] = React.useState(null);
+  const [selectedCategory, setSelectedCategory] = React.useState({ id: 0, name: 'Geral', type: 'home' });
 
   // FUNCTIONS
   React.useEffect(() => {

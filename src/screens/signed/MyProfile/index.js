@@ -4,13 +4,13 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // ACTIONS
 import AwesomeAlert from 'react-native-awesome-alerts';
-import { signOut } from '../../store/modules/auth/actions';
+import { signOut } from '../../../store/modules/auth/actions';
 
 // CUSTOM IMPORTS
-import Background from '../../components/Background';
-import { colors } from '../../styles';
-import { firebaseSignOut } from '../../services/firebase';
-import noAvatar from '../../assets/noAvatar.png';
+import Background from '../../../components/Background';
+import { colors } from '../../../styles';
+import { firebaseSignOut } from '../../../services/firebase';
+import noAvatar from '../../../assets/noAvatar.png';
 import EditProfileModal from './EditProfile';
 import {
   Container,

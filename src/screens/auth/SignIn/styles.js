@@ -3,10 +3,10 @@ import { Platform } from 'react-native';
 import { Form as RocketForm } from '@unform/mobile';
 
 // CUSTOM IMPORTS
-import Button from '../../components/Button';
-import Input from '../../components/Input';
+import Button from '../../../components/Button';
+import Input from '../../../components/Input';
 
-import { colors } from '../../styles';
+import { colors } from '../../../styles';
 
 export const Container = styled.KeyboardAvoidingView.attrs({
   enabled: Platform.OS === 'ios',

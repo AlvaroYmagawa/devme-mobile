@@ -19,6 +19,7 @@ const colors = {
 
   // WHITE
   whiteSmoke: '#F5F5F5',
+  error: '#DD4848',
 };
 
 export default colors;

@@ -33,7 +33,11 @@ const CategoryCell = ({
   function handleClick() {
     setSelectedCategory(category);
 
-    dispatch(listPosts(category.id));
+    if (category.id === 0) {
+      dispatch(listPosts());
+    } else {
+      dispatch(listPosts(category.id));
+    }
   }
 
   const iconColor = setIconColor();
@@ -55,7 +59,10 @@ const CategoryCell = ({
         return <Ionicons name="logo-javascript" size={24} color={iconColor} />;
       case 'css':
         return <FontAwesome name="css3" size={24} color={iconColor} />;
+
       case 'nodeJs': return <Ionicons name="logo-nodejs" size={24} color={iconColor} />;
+
+      case 'home': return <Ionicons name="md-home" size={24} color={iconColor} />;
 
       default:
     }

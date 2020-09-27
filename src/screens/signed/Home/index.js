@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 // CUSTOM IMPORTSS
-import Background from '../../components/Background';
-import Header from '../../components/Header';
+import Background from '../../../components/Background';
+import Header from '../../../components/Header';
 import { Container, Posts } from './styles';
 
 const Home = () => {

@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 
 // CUSTOM IMPORTS
-import Background from '../../components/Background';
-import logo from '../../assets/logo.png';
-import { isDataValid } from '../../utils/validations';
-import { getYupErrors } from '../../utils/yup';
-import { signIn } from '../../store/modules/auth/actions';
+import Background from '../../../components/Background';
+import logo from '../../../assets/logo.png';
+import { isDataValid } from '../../../utils/validations';
+import { getYupErrors } from '../../../utils/yup';
+import { signIn } from '../../../store/modules/auth/actions';
 
 import {
   Container,
@@ -68,11 +68,13 @@ const Signin = ({ navigation }) => {
             autoCapitalize="none"
             placeholder="Digite seu email"
             icon="email"
+            title="Email"
             returnKeyType="next"
             onSubmitEditing={() => passwordRef.current.focus()}
           />
 
           <FormInput
+            title="Senha"
             ref={passwordRef}
             name="password"
             style={{ marginTop: 8 }}

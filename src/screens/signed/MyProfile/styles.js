@@ -1,9 +1,9 @@
 import styled from 'styled-components/native';
 
 // CUSTOM IMPORTS
-import { colors } from '../../styles';
-import Categories from '../../components/Lists/CategoryList';
-import Button from '../../components/Button';
+import { colors } from '../../../styles';
+import Categories from '../../../components/Lists/CategoryList';
+import Button from '../../../components/Button';
 
 export const Container = styled.View`
   padding: 0 16px;

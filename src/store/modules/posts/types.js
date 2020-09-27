@@ -1,8 +1,11 @@
 const types = {
   LIST: {
-    REQUEST: '@categories/LIST_REQUEST',
-    SUCCESS: '@categories/LIST_SUCCESS',
-    FAILED: '@categories/LIST_FAILED',
+    REQUEST: '@posts/LIST_REQUEST',
+    SUCCESS: '@posts/LIST_SUCCESS',
+    FAILED: '@posts/LIST_FAILED',
+  },
+  CREATE: {
+    SUCCESS: '@posts/CREATE_REQUEST',
   },
 };
 

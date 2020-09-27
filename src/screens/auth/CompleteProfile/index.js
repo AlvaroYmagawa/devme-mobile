@@ -9,17 +9,17 @@ import { useDispatch } from 'react-redux';
 import { AntDesign } from '@expo/vector-icons';
 
 // ACTIONS
-import { signOut } from '../../store/modules/auth/actions';
-import { updateUserSuccessful } from '../../store/modules/user/actions';
+import { signOut } from '../../../store/modules/auth/actions';
+import { updateUserSuccessful } from '../../../store/modules/user/actions';
 
 // CUSTOM IMPORTS
-import { firebaseSignOut } from '../../services/firebase';
-import welcomeImage from '../../assets/welcome.png';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import { firebaseSignOut } from '../../../services/firebase';
+import welcomeImage from '../../../assets/welcome.png';
+import Input from '../../../components/Input';
+import Button from '../../../components/Button';
 import { styles } from './styles';
-import { isDataValid } from '../../utils/validations';
-import { getYupErrors } from '../../utils/yup';
+import { isDataValid } from '../../../utils/validations';
+import { getYupErrors } from '../../../utils/yup';
 
 const CompleteProfile = () => {
   const dispatch = useDispatch();

@@ -1,23 +1,76 @@
 import React from 'react';
 import {
-  View, Text, TextInput, Image, TouchableOpacity,
+  View, Text, Image, TouchableOpacity,
 } from 'react-native';
 import Modal from 'react-native-modal';
+import { Form } from '@unform/mobile';
+import * as Yup from 'yup';
 import { useSelector } from 'react-redux';
+import Input from '../../../../Input';
+
+// APIs
+import { createPost } from '../../../../../apis/posts';
 
 // CUSTOM IMPORTS
 import { styles } from './styles';
 import noAvatar from '../../../../../assets/noAvatar.png';
 import { colors } from '../../../../../styles';
 import Button from '../../../../Button';
+import { isDataValid } from '../../../../../utils/validations';
+import { getYupErrors } from '../../../../../utils/yup';
 
 const AddPostModal = ({ isVisible, onClose, selectedCategory }) => {
   const profile = useSelector((state) => state.user.profile);
 
-  // FUNCTIONS
-  function handlePost() {
+  // REFS
+  const formRef = React.useRef(null);
 
-  }
+  // STATE
+  const [isLoading, setIsLoading] = React.useState(null);
+
+  // FUNCTIONS
+  const handleSubmit = React.useCallback(async (data) => {
+    function dispatchCreatePost() {
+      const { id: category_id } = selectedCategory;
+      const { title, description } = data;
+
+      const postData = {
+        category_id,
+        title,
+        description,
+        created_at: 'agora mesmo',
+        user: {
+          name: profile.displayName,
+          avatar: profile.photoURL,
+        },
+        categories: [selectedCategory],
+      };
+
+      createPost({ setIsLoading, postData, onClose });
+    }
+
+    try {
+      // Clear errors
+      if (isDataValid(formRef.current)) formRef.current.setErrors({});
+
+      const schema = Yup.object().shape({
+        title: Yup.string().required('O título da publicação é obrigatório'),
+        description: Yup.string().required('A descrição da publicação é obrigatória'),
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      dispatchCreatePost();
+    } catch (err) {
+      // Format yup errors
+      const errors = getYupErrors(err);
+
+      // Set errors into form inputs
+      if (isDataValid(formRef.current)) formRef.current.setErrors(errors);
+    }
+  }, []);
 
   return (
     <Modal
@@ -27,50 +80,59 @@ const AddPostModal = ({ isVisible, onClose, selectedCategory }) => {
       onBackButtonPress={onClose}
       style={styles.backdrop}
     >
-      <View style={styles.container}>
-        <Text style={styles.title}>Criar Publicação</Text>
+      <Form ref={formRef} onSubmit={handleSubmit}>
+        <View style={styles.container}>
+          <Text style={styles.title}>Criar Publicação</Text>
 
-        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 24 }}>
-          <Image
-            style={styles.avatar}
-            source={profile.photoURL ? { uri: profile.photoURL } : noAvatar}
-          />
-          <View style={{ marginLeft: 8 }}>
-            <Text style={styles.userName}>{profile.displayName}</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 24 }}>
+            <Image
+              style={styles.avatar}
+              source={profile.photoURL ? { uri: profile.photoURL } : noAvatar}
+            />
+            <View style={{ marginLeft: 8 }}>
+              <Text style={styles.userName}>{profile.displayName}</Text>
 
-            {selectedCategory && (
-            <View style={{ flexDirection: 'row', marginTop: 4 }}>
-              <Text style={styles.tag}>{selectedCategory.name}</Text>
+              {selectedCategory ? (
+                <View style={{ flexDirection: 'row', marginTop: 4 }}>
+                  <Text style={styles.tag}>{selectedCategory.name}</Text>
+                </View>
+              ) : (
+                <View style={{ flexDirection: 'row', marginTop: 4 }}>
+                  <Text style={styles.tag}>Geral</Text>
+                </View>
+              )}
+
             </View>
-            ) }
-
           </View>
-        </View>
 
-        <View style={styles.fieldset}>
-          <Text style={styles.fieldsetTitle}>Título da Publicação</Text>
-          <TextInput
+          <Input
+            title="Título da publicação"
+            name="title"
             placeholder="Digite o título da publicação"
-            style={styles.textArea}
-            placeholderTextColor={colors.opaquetText}
+            placeholderTextColor={colors.primary}
+            style={{ marginBottom: 8, elevation: 1001 }}
           />
-        </View>
 
-        <View style={styles.fieldset}>
-          <Text style={styles.fieldsetTitle}>Descrição</Text>
-          <TextInput
+          <Input
+            title="Descrição"
+            name="description"
             multiline
             placeholder="Qual sua dúvida?"
-            style={styles.textArea}
-            placeholderTextColor={colors.opaquetText}
+            placeholderTextColor={colors.primary}
           />
+
+          <TouchableOpacity
+            style={{ marginTop: 32 }}
+            activeOpacity={1}
+            onPress={() => {
+              if (formRef.current) formRef.current.submitForm();
+            }}
+          >
+            <Button isLoading={isLoading}>Publicar</Button>
+          </TouchableOpacity>
+
         </View>
-
-        <TouchableOpacity style={{ marginTop: 32 }} activeOpacity={1} onPress={handlePost}>
-          <Button>Publicar</Button>
-        </TouchableOpacity>
-
-      </View>
+      </Form>
     </Modal>
   );
 };
