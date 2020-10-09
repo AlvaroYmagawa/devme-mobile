@@ -7,7 +7,7 @@ import {
   InputButton,
   Text,
 } from './styles';
-import AddModal from './AddPostModal';
+import AddModal from '../../../Modals/AddPostModal';
 import Avatar from '../../../Avatar';
 
 const AddPostCard = ({ profile, selectedCategory }) => {

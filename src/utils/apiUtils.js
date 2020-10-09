@@ -6,8 +6,6 @@ function ResponseException(message) {
 }
 
 export const isResponseSuccessful = (status) => {
-  console.tron.log(status);
-
   if (Number(status) >= 200 && Number(status) <= 300) return true;
 
   throw new ResponseException('Invalid status response');

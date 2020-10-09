@@ -10,7 +10,7 @@ import {
   Container, Post, Categories,
 } from './styles';
 import AddPostCard from './AddPostCard';
-import Loader from './Loader';
+import Loader from '../../Loaders/PostLoader';
 
 const PostList = ({ style }) => {
   const dispatch = useDispatch();

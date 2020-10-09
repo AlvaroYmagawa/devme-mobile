@@ -26,7 +26,7 @@
       "created_at": "10min atrás",
       "user": {
         "name": "João da Silva",
-        "avatar": "https://web.whatsapp.com/pp?e=https%3A%2F%2Fpps.whatsapp.net%2Fv%2Ft61.24694-24%2F76820369_257301125271631_8903249730788948206_n.jpg%3Foh%3D1be7b128ba62800dea74511ee1c56f56%26oe%3D5F748D22&t=l&u=5516997421159%40c.us&i=1584829226&n=RWvQRvYraLomXMLAetwlOTSzujRIgV8itrt%2BsG0x7H4%3D"
+        "avatar": "https://conteudo.imguol.com.br/c/noticias/ef/2019/11/08/andras-arato-ficou-conhecido-como-hide-pain-harold-por-causa-de-seu-sorriso-nervoso-1573231062755_v2_450x337.jpg"
       },
       "description": "Sou iniciante na área de programação backend, e gostaria de saber qual a opinião de desenvolvedores backend experientes sobre o PHP e o Node.js.",
       "categories": [
@@ -37,6 +37,38 @@
           "color": "#264de4"
         }
       ]
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "post_id": 1,
+      "user": {
+        "name": "Harold D.",
+        "avatar": "https://conteudo.imguol.com.br/c/noticias/ef/2019/11/08/andras-arato-ficou-conhecido-como-hide-pain-harold-por-causa-de-seu-sorriso-nervoso-1573231062755_v2_450x337.jpg"
+      },
+      "message": "Tenho experiência com React.js posso te ajudar!",
+      "created_at": "20min atrás"
+    },
+    {
+      "id": 2,
+      "post_id": 1,
+      "user": {
+        "name": "José Junior",
+        "avatar": null
+      },
+      "message": "Também posso te ajudar amigo!",
+      "created_at": "45min atrás"
+    },
+    {
+      "id": 1,
+      "post_id": 2,
+      "user": {
+        "name": "Harold D.",
+        "avatar": "https://conteudo.imguol.com.br/c/noticias/ef/2019/11/08/andras-arato-ficou-conhecido-como-hide-pain-harold-por-causa-de-seu-sorriso-nervoso-1573231062755_v2_450x337.jpg"
+      },
+      "message": "Tenho experiência com React.js posso te ajudar!",
+      "created_at": "20min atrás"
     }
   ],
   "categories": [

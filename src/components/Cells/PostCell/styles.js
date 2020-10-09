@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { RectButton } from 'react-native-gesture-handler';
 
 // CUSTOM IMPORTS
 import { colors } from '../../../styles';
@@ -59,6 +60,26 @@ export const Description = styled.Text`
   margin-top: 8px;
 `;
 
-export const HelpButton = styled(Button)`
+export const Footer = styled.View`
   margin-top: 24px;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const CommentButton = styled(RectButton)`
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 8px;
+  height: 100%;
+  padding: 8px;
+`;
+
+export const CommentButtonText = styled.Text`
+  font-weight: bold;
+  color: ${colors.text};
+  margin-left: 8px;
+`;
+
+export const HelpButton = styled(Button)`
 `;

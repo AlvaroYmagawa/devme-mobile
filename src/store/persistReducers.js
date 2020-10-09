@@ -6,7 +6,7 @@ export default (reducers) => {
     {
       key: 'devMe',
       storage: AsyncStorage, // This config is nedeed to mobile env
-      blacklist: ['categories', 'posts'], // Do not persist reducers in blackList
+      blacklist: ['categories', 'posts', 'comments'], // Do not persist reducers in blackList
     },
     reducers,
   );
