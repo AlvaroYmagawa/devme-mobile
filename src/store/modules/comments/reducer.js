@@ -10,6 +10,7 @@ const INITIAL_STATE = {
     data: [],
     isLoaded: false,
     isCreating: apiStatus.INACTIVE,
+    isDeleting: apiStatus.INACTIVE,
   },
 };
 
@@ -54,12 +55,24 @@ export default function postsReducer(state = INITIAL_STATE, action) {
       }
 
       // DELETE
+      case types.DELETE.REQUEST: {
+        draft.list.isDeleting = apiStatus.PENDING;
+
+        break;
+      }
       case types.DELETE.SUCCESS: {
         const { commentId } = action.payload;
 
         const filteredArray = draft.list.data.filter((obj) => obj.id !== commentId);
 
         draft.list.data = filteredArray;
+
+        draft.list.isDeleting = apiStatus.SUCCESS;
+
+        break;
+      }
+      case types.DELETE.FAILED: {
+        draft.list.isDeleting = apiStatus.FAILED;
 
         break;
       }
@@ -68,6 +81,7 @@ export default function postsReducer(state = INITIAL_STATE, action) {
         draft.list.data = [];
         draft.list.isLoaded = false;
         draft.list.isCreating = apiStatus.INACTIVE;
+        draft.list.isDeleting = apiStatus.INACTIVE;
         break;
       }
       default:

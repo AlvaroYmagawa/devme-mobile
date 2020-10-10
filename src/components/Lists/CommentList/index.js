@@ -14,6 +14,7 @@ import {
 import CommentCell from '../../Cells/CommentCell';
 import CommentLoader from '../../Loaders/CommentLoader';
 import { colors } from '../../../styles';
+import { isStringEmpty } from '../../../utils/stringUtils';
 
 const loaders = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }, { id: 6 }];
 
@@ -50,6 +51,7 @@ const CommentList = ({ postId }) => {
     };
 
     dispatch(craeteComment({ commentData }));
+    setMessage('');
   }
 
   return (
@@ -61,13 +63,18 @@ const CommentList = ({ postId }) => {
         KeyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => (isLoaded
           ? <CommentCell comment={item} />
-          : (<CommentLoader width={Dimensions.get('window').width - 16} style={{ marginTop: 24 }} />))}
+          : (
+            <CommentLoader
+              width={Dimensions.get('window').width - 16}
+              style={{ marginTop: 24, paddingHorizontal: 16 }}
+            />
+          ))}
         onContentSizeChange={() => scrollRef.current.scrollToEnd({ animated: true })}
         onLayout={() => scrollRef.current.scrollToEnd({ animated: true })}
         ListFooterComponent={isCreating === apiStatus.PENDING && (
           <CommentLoader
             width={Dimensions.get('window').width - 16}
-            style={{ marginVertical: 16 }}
+            style={{ marginVertical: 16, paddingHorizontal: 16 }}
             loaderPlacholder="Publicando..."
           />
         )}
@@ -81,7 +88,7 @@ const CommentList = ({ postId }) => {
           onChangeText={(text) => setMessage(text)}
         />
 
-        <SendButton onPress={sendComment}>
+        <SendButton onPress={sendComment} isEnable={!isStringEmpty(message)}>
           <Ionicons
             name="md-send"
             size={24}

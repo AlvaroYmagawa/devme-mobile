@@ -14,13 +14,13 @@ export const Comments = styled.FlatList`
 export const FieldsetInput = styled.View`
   flex-direction: row;
   align-items: center;
-  padding-top: 16px;
+  padding: 16px 16px 0 16px;
   border-top-width: 1px;
   border-color: ${colors.primary};
 `;
 
 export const SendButton = styled.TouchableOpacity`
-  background-color: ${colors.accent};
+  background-color: ${(props) => (props.isEnable ? colors.accent : colors.opaqueAccent)};
   border-radius: 50px;
   margin-left: 8px;
   height: 48px;

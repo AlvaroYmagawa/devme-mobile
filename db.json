@@ -81,17 +81,6 @@
       "created_at": "20min atrás"
     },
     {
-      "id": 5,
-      "post_id": 1,
-      "user": {
-        "name": "Harold D.",
-        "avatar": "https://conteudo.imguol.com.br/c/noticias/ef/2019/11/08/andras-arato-ficou-conhecido-como-hide-pain-harold-por-causa-de-seu-sorriso-nervoso-1573231062755_v2_450x337.jpg"
-      },
-      "message": "Tenho experiência com React.js posso te ajudar!",
-      "created_at": "20min atrás"
-    },
-    {
-      "id": 6,
       "post_id": 1,
       "user": {
         "name": "José Junior",
@@ -101,7 +90,6 @@
       "created_at": "45min atrás"
     },
     {
-      "id": 7,
       "post_id": 2,
       "user": {
         "name": "Harold D.",
@@ -138,10 +126,32 @@
         "name": "Kenzo",
         "avatar": null
       },
-      "message": "Novo ",
+      "message": "Novo comentário ",
       "created_at": "Agora mesmo",
       "owner": true,
       "id": 10
+    },
+    {
+      "post_id": 1,
+      "user": {
+        "name": "Kenzo",
+        "avatar": null
+      },
+      "message": "Mais um!",
+      "created_at": "Agora mesmo",
+      "owner": true,
+      "id": 11
+    },
+    {
+      "post_id": 1,
+      "user": {
+        "name": "Kenzo",
+        "avatar": null
+      },
+      "message": "Novamente ",
+      "created_at": "Agora mesmo",
+      "owner": true,
+      "id": 12
     }
   ],
   "categories": [

@@ -11,7 +11,9 @@ const types = {
     FAILED: '@comments/CREATE_FAILED',
   },
   DELETE: {
-    SUCCESS: '@comments/DELETE_REQUEST',
+    REQUEST: '@comments/DELETE_REQUEST',
+    SUCCESS: '@comments/DELETE_SUCCESS',
+    FAILED: '@comments/DELETE_FAILED',
   },
 };
 

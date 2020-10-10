@@ -44,9 +44,21 @@ export function craeteCommentFailed() {
 }
 
 // DELETE
-export function deletePostSuccessful({ commentId }) {
+export function deleteComment({ commentId }) {
+  return {
+    type: types.DELETE.REQUEST,
+    payload: { commentId },
+  };
+}
+export function deleteCommentSuccessful({ commentId }) {
   return {
     type: types.DELETE.SUCCESS,
     payload: { commentId },
+  };
+}
+
+export function deleteCommentFailed() {
+  return {
+    type: types.DELETE.FAILED,
   };
 }

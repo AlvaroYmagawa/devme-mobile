@@ -11,6 +11,8 @@ import {
   listCommentsFailed,
   craeteCommentSuccessful,
   craeteCommentFailed,
+  deleteCommentSuccessful,
+  deleteCommentFailed,
 } from './actions';
 
 export function* list({ payload }) {
@@ -41,7 +43,22 @@ export function* craete({ payload }) {
   }
 }
 
+export function* destroy({ payload }) {
+  try {
+    const { commentId } = payload;
+
+    yield delay(2000);
+
+    yield call(api.delete, `/comments/${commentId}`);
+
+    yield put(deleteCommentSuccessful({ commentId }));
+  } catch (err) {
+    yield put(deleteCommentFailed());
+  }
+}
+
 export default all([
   takeLatest(types.LIST.REQUEST, list),
   takeLatest(types.CREATE.REQUEST, craete),
+  takeLatest(types.DELETE.REQUEST, destroy),
 ]);

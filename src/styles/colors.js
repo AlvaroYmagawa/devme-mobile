@@ -2,7 +2,7 @@ const colors = {
   primary: '#393e46',
   primaryDark: '#232931',
   accent: '#4ecca3',
-  opaqueAccent: '#4ecca310',
+  opaqueAccent: '#4ecca330',
   background: '#232931',
 
   contentLoader: '#393e4650',

@@ -1,7 +1,15 @@
 import React from 'react';
 
+// APIs
+import { deleteComment } from '../../../apis/comments';
+
+// CUSTOM IMPORTS
+import Loader from '../../Loaders/CommentLoader';
+import Options from './Options';
+import { colors } from '../../../styles';
 import Avatar from '../../Avatar';
 import {
+  Wrapper,
   Container,
   RigthWrapper,
   MessageCard,
@@ -11,24 +19,64 @@ import {
 } from './styles';
 
 const CommentCell = ({ comment }) => {
-  const { user, message, created_at: createdAt } = comment;
+  const {
+    user, message, created_at: createdAt, owner,
+  } = comment;
 
-  return (
-    <Container>
-      <Avatar source={{ uri: user.avatar }} iconSize={24} size={40} />
+  // STATES
+  const [showOptions, setShowOptions] = React.useState(false);
+  const [isDeleting, setIsDeleting] = React.useState(false);
 
-      <RigthWrapper>
-        <MessageCard>
-          <Name>{user.name}</Name>
+  const options = [
+    {
+      id: 1,
+      name: 'Excluir comentário',
+      icon: 'delete-outline',
+      color: colors.error,
+      onPress: () => {
+        deleteComment({ commentId: comment.id, setIsDeleting });
+        setShowOptions(false);
+      },
+    }, {
+      id: 2,
+      name: 'Editar comentário',
+      icon: 'pencil-outline',
+      color: colors.text,
+      onPress: () => {},
+    },
+  ];
 
-          <Message>
-            {message}
-          </Message>
-        </MessageCard>
+  return isDeleting ? (
+    <Loader
+      loaderPlacholder="Deletando..."
+      style={{ paddingHorizontal: 16 }}
+    />
+  ) : (
+    <>
+      <Wrapper onLongPress={() => setShowOptions(true)}>
+        <Container>
+          <Avatar source={{ uri: user.avatar }} iconSize={24} size={40} />
 
-        <CreatedAt>{createdAt}</CreatedAt>
-      </RigthWrapper>
-    </Container>
+          <RigthWrapper>
+            <MessageCard>
+              <Name>{user.name}</Name>
+
+              <Message>
+                {message}
+              </Message>
+            </MessageCard>
+
+            <CreatedAt>{createdAt}</CreatedAt>
+          </RigthWrapper>
+        </Container>
+      </Wrapper>
+
+      <Options
+        isVisible={showOptions}
+        onClose={() => setShowOptions(false)}
+        options={options}
+      />
+    </>
   );
 };
 

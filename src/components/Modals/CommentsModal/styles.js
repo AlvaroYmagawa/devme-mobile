@@ -16,14 +16,15 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.primaryDark,
     borderTopEndRadius: 8,
     borderTopStartRadius: 8,
-    padding: 16,
-    height: '90%',
+    paddingVertical: 16,
+    height: '95%',
   },
   header: {
     display: 'flex',
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderBottomColor: colors.primary,
+    paddingHorizontal: 16,
     paddingBottom: 16,
   },
   title: {

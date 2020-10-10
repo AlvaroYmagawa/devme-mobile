@@ -3,9 +3,15 @@ import styled from 'styled-components/native';
 // CUSTOM IMPORTS
 import { colors } from '../../../styles';
 
+export const Wrapper = styled.TouchableHighlight.attrs({
+  underlayColor: colors.black20,
+})`
+  padding: 0 16px;
+`;
+
 export const Container = styled.View`
   flex-direction: row;
-  margin-top: 16px;
+  margin: 8px 0;
 `;
 
 export const RigthWrapper = styled.View`
