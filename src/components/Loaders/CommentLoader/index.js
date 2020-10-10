@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Dimensions } from 'react-native';
+import { View, Dimensions, Text } from 'react-native';
 import {
   Placeholder,
   PlaceholderMedia,
@@ -16,7 +16,7 @@ function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-const Loader = ({ style }) => (
+const Loader = ({ style, loaderPlacholder }) => (
   <Placeholder
     Animation={Fade}
     style={style}
@@ -31,17 +31,32 @@ const Loader = ({ style }) => (
       }}
       />
 
-      <PlaceholderLine
-        style={{
-          backgroundColor: colors.primaryDark,
-          marginLeft: 16,
-          borderRadius: 16,
-          height: getRandomArbitrary(30, 80),
-          opacity: 0.3,
-          marginBottom: 8,
-          width: dimensions.width * getRandomArbitrary(0.3, 0.7),
+      <View>
+        <PlaceholderLine
+          style={{
+            backgroundColor: colors.primaryDark,
+            marginLeft: 16,
+            borderRadius: 16,
+            height: getRandomArbitrary(30, 80),
+            opacity: 0.3,
+            marginBottom: 8,
+            width: dimensions.width * getRandomArbitrary(0.3, 0.7),
+          }}
+        />
+        {loaderPlacholder && (
+        <Text style={{
+          color: colors.opaquetText,
+          fontSize: 12,
+          position: 'relative',
+          left: 16,
         }}
-      />
+        >
+          {loaderPlacholder}
+        </Text>
+        )}
+
+      </View>
+
     </View>
   </Placeholder>
 );

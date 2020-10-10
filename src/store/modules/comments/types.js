@@ -6,7 +6,9 @@ const types = {
     CLEAR: '@comments/LIST_CLEAR',
   },
   CREATE: {
-    SUCCESS: '@comments/CREATE_REQUEST',
+    REQUEST: '@comments/CREATE_REQUEST',
+    SUCCESS: '@comments/CREATE_SUCCESS',
+    FAILED: '@comments/CREATE_FAILED',
   },
   DELETE: {
     SUCCESS: '@comments/DELETE_REQUEST',

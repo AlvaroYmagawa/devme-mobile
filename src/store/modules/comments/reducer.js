@@ -1,6 +1,7 @@
 import produce from 'immer';
 
 // CUSTOM IMPORTS
+import apiStatus from '../../../apis/status';
 import types from './types';
 import { isDataValid } from '../../../utils/validations';
 
@@ -8,6 +9,7 @@ const INITIAL_STATE = {
   list: {
     data: [],
     isLoaded: false,
+    isCreating: apiStatus.INACTIVE,
   },
 };
 
@@ -32,16 +34,22 @@ export default function postsReducer(state = INITIAL_STATE, action) {
       }
 
       // CREATE
+      case types.CREATE.REQUEST: {
+        draft.list.isCreating = apiStatus.PENDING;
+        break;
+      }
       case types.CREATE.SUCCESS: {
         const { comment } = action.payload;
 
         if (isDataValid(comment)) {
-          const auxArray = draft.list.data;
-          auxArray.unshift(comment);
-
-          draft.list.data = auxArray;
+          draft.list.data = [...draft.list.data, comment];
         }
 
+        draft.list.isCreating = apiStatus.SUCCESS;
+        break;
+      }
+      case types.CREATE.FAILED: {
+        draft.list.isCreating = apiStatus.FAILED;
         break;
       }
 
@@ -59,6 +67,7 @@ export default function postsReducer(state = INITIAL_STATE, action) {
       case '@auth/SIGN_OUT': {
         draft.list.data = [];
         draft.list.isLoaded = false;
+        draft.list.isCreating = apiStatus.INACTIVE;
         break;
       }
       default:

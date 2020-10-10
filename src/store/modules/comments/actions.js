@@ -25,10 +25,21 @@ export function clearComments() {
 }
 
 // CRAETE
+export function craeteComment({ commentData }) {
+  return {
+    type: types.CREATE.REQUEST,
+    payload: { commentData },
+  };
+}
 export function craeteCommentSuccessful({ comment }) {
   return {
     type: types.CREATE.SUCCESS,
     payload: { comment },
+  };
+}
+export function craeteCommentFailed() {
+  return {
+    type: types.CREATE.FAILED,
   };
 }
 
