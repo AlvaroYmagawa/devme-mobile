@@ -7,6 +7,9 @@ const types = {
   CREATE: {
     SUCCESS: '@posts/CREATE_REQUEST',
   },
+  UPDATE: {
+    SUCCESS: '@posts/UPDATE_REQUEST',
+  },
   DELETE: {
     SUCCESS: '@posts/DELETE_REQUEST',
   },

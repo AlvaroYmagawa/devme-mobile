@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import Input from '../../Input';
 
 // APIs
-import { createPost } from '../../../apis/posts';
+import { createPost, updatePost } from '../../../apis/posts';
 
 // CUSTOM IMPORTS
 import { styles } from './styles';
@@ -20,7 +20,7 @@ import Button from '../../Button';
 import { isDataValid } from '../../../utils/validations';
 import { getYupErrors } from '../../../utils/yup';
 
-const AddPostModal = ({
+const PostFormModal = ({
   isVisible, onClose, selectedCategory, post,
 }) => {
   const profile = useSelector((state) => state.user.profile);
@@ -30,9 +30,14 @@ const AddPostModal = ({
   const formRef = React.useRef(null);
 
   // STATE
+  const [initialData, setInitialData] = React.useState({});
   const [isLoading, setIsLoading] = React.useState(null);
 
   // FUNCTIONS
+  React.useEffect(() => {
+    if (isEditMode) setInitialData(post);
+  }, []);
+
   const handleSubmit = React.useCallback(async (data) => {
     function dispatchCreatePost() {
       const { id: category_id } = selectedCategory;
@@ -50,7 +55,13 @@ const AddPostModal = ({
         categories: [selectedCategory],
       };
 
-      createPost({ setIsLoading, postData, onClose });
+      if (isEditMode) {
+        updatePost({
+          onClose, setIsLoading, postData, postId: post.id,
+        });
+      } else {
+        createPost({ setIsLoading, postData, onClose });
+      }
     }
 
     try {
@@ -84,9 +95,12 @@ const AddPostModal = ({
       onBackButtonPress={onClose}
       style={styles.backdrop}
     >
-      <Form ref={formRef} onSubmit={handleSubmit}>
+      <Form ref={formRef} onSubmit={handleSubmit} initialData={initialData}>
         <View style={styles.container}>
-          <Text style={styles.title}>Criar Publicação</Text>
+          <Text style={styles.title}>
+            {isEditMode ? 'Editar Publicação'
+              : 'Criar Publicação'}
+          </Text>
 
           <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 24 }}>
             <Avatar
@@ -132,7 +146,7 @@ const AddPostModal = ({
               if (formRef.current) formRef.current.submitForm();
             }}
           >
-            <Button isLoading={isLoading}>Publicar</Button>
+            <Button isLoading={isLoading}>{isEditMode ? 'Salvar' : 'Publicar'}</Button>
           </TouchableOpacity>
 
         </View>
@@ -141,12 +155,12 @@ const AddPostModal = ({
   );
 };
 
-AddPostModal.propTypes = {
+PostFormModal.propTypes = {
   post: PropTypes.oneOfType([PropTypes.object]),
 };
 
-AddPostModal.defaultProps = {
+PostFormModal.defaultProps = {
   post: null,
 };
 
-export default AddPostModal;
+export default PostFormModal;

@@ -8,6 +8,7 @@ import OptionsMenu from 'react-native-options-menu';
 import { deletePost } from '../../../apis/posts';
 
 // CUSTOM IMPORTS
+import PostModal from '../../Modals/PostFormModal';
 import CommentsModal from '../../Modals/CommentsModal';
 import { colors } from '../../../styles';
 import Avatar from '../../Avatar';
@@ -36,6 +37,7 @@ const PostCell = ({ post, style }) => {
   // STATE
   const [isDeleting, setIsDeleting] = React.useState(false);
   const [showComments, setShowComments] = React.useState(false);
+  const [showPostModal, setShowPostModal] = React.useState(false);
 
   // FUNCTIONS
   function openWhatsApp() {
@@ -74,7 +76,10 @@ const PostCell = ({ post, style }) => {
             }}
             destructiveIndex={1}
             options={['Editar', 'Excluir']}
-            actions={[() => {}, () => deletePost({ postId: post.id, setIsLoading: setIsDeleting })]}
+            actions={[
+              () => setShowPostModal(true),
+              () => deletePost({ postId: post.id, setIsLoading: setIsDeleting }),
+            ]}
           />
 
         </Header>
@@ -107,6 +112,13 @@ const PostCell = ({ post, style }) => {
         post={post}
         isVisible={showComments}
         onClose={() => setShowComments(false)}
+      />
+
+      <PostModal
+        isVisible={showPostModal}
+        onClose={() => setShowPostModal(false)}
+        selectedCategory={post.categories[0]}
+        post={post}
       />
 
     </>

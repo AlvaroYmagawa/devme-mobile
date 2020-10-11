@@ -27,6 +27,14 @@ export function craetePostSuccessful({ post }) {
   };
 }
 
+// UPDATE
+export function updatePostSuccessful({ post, postId }) {
+  return {
+    type: types.UPDATE.SUCCESS,
+    payload: { post, postId },
+  };
+}
+
 // DELETE
 export function deletePostSuccessful({ postId }) {
   return {

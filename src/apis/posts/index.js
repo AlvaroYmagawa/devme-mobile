@@ -3,7 +3,7 @@ import { showErrors } from '../../utils/apiUtils';
 
 // ACTIONS
 import { store } from '../../store';
-import { craetePostSuccessful, deletePostSuccessful } from '../../store/modules/posts/actions';
+import { craetePostSuccessful, deletePostSuccessful, updatePostSuccessful } from '../../store/modules/posts/actions';
 
 export async function fetchPosts({ setPosts, setIsLoaded }) {
   await api.get('/posts').then((response) => {
@@ -22,6 +22,23 @@ export async function createPost({ setIsLoading, onClose, postData }) {
   setTimeout(async () => {
     await api.post('/posts', postData).then((response) => {
       store.dispatch(craetePostSuccessful({ post: response.data }));
+      setIsLoading(false);
+      onClose();
+    }).catch((err) => {
+      showErrors(err);
+      setIsLoading(false);
+    });
+  }, 2000);
+}
+
+export async function updatePost({
+  setIsLoading, onClose, postData, postId,
+}) {
+  setIsLoading(true);
+
+  setTimeout(async () => {
+    await api.put(`/posts/${postId}`, postData).then((response) => {
+      store.dispatch(updatePostSuccessful({ post: response.data, postId }));
       setIsLoading(false);
       onClose();
     }).catch((err) => {

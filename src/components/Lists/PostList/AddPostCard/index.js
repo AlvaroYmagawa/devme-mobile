@@ -7,7 +7,7 @@ import {
   InputButton,
   Text,
 } from './styles';
-import AddModal from '../../../Modals/AddPostModal';
+import PostFormModal from '../../../Modals/PostFormModal';
 import Avatar from '../../../Avatar';
 
 const AddPostCard = ({ profile, selectedCategory }) => {
@@ -27,7 +27,7 @@ const AddPostCard = ({ profile, selectedCategory }) => {
 
       </Container>
 
-      <AddModal
+      <PostFormModal
         isVisible={showModal}
         onClose={() => setShowModal(false)}
         selectedCategory={selectedCategory}

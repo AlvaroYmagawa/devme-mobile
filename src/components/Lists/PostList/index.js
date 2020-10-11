@@ -22,7 +22,13 @@ const PostList = ({ style }) => {
 
   // FUNCTIONS
   React.useEffect(() => {
-    dispatch(listPosts());
+    let isMounted = true;
+
+    if (isMounted) { dispatch(listPosts()); }
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const loaders = [{ id: 1 }, { id: 2 }, { id: 3 }];

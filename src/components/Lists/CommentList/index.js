@@ -31,10 +31,13 @@ const CommentList = ({ postId }) => {
 
   // FUNCTIONS
   React.useEffect(() => {
-    dispatch(listComments({ postId }));
+    let isMounted = true;
+
+    if (isMounted) dispatch(listComments({ postId }));
 
     return () => {
       dispatch(clearComments());
+      isMounted = false;
     };
   }, []);
 
@@ -61,7 +64,7 @@ const CommentList = ({ postId }) => {
         showsVerticalScrollIndicator
         data={isLoaded ? comments : loaders}
         KeyExtractor={(item) => String(item.id)}
-        renderItem={({ item }) => (isLoaded
+        renderItem={({ item, index }) => (isLoaded
           ? <CommentCell comment={item} />
           : (
             <CommentLoader
@@ -69,8 +72,11 @@ const CommentList = ({ postId }) => {
               style={{ marginTop: 24, paddingHorizontal: 16 }}
             />
           ))}
-        onContentSizeChange={() => scrollRef.current.scrollToEnd({ animated: true })}
-        onLayout={() => scrollRef.current.scrollToEnd({ animated: true })}
+        // onContentSizeChange={() => scrollRef.current.scrollToIndex({
+        //   animated: true,
+        //   index: currentIndex,
+        // })}
+        // onLayout={scrollRef.current.scrollToEnd({ animated: true })}
         ListFooterComponent={isCreating === apiStatus.PENDING && (
           <CommentLoader
             width={Dimensions.get('window').width - 16}
@@ -86,6 +92,7 @@ const CommentList = ({ postId }) => {
           multiline
           value={message}
           onChangeText={(text) => setMessage(text)}
+          onFocus={() => scrollRef.current.scrollToEnd({ animated: true })}
         />
 
         <SendButton onPress={sendComment} isEnable={!isStringEmpty(message)}>

@@ -23,7 +23,7 @@ export default function postsReducer(state = INITIAL_STATE, action) {
       case types.LIST.SUCCESS: {
         const { posts } = action.payload;
 
-        if (isDataValid(posts)) draft.list.data = posts;
+        if (isDataValid(posts)) draft.list.data = posts.reverse();
 
         draft.list.isLoaded = true;
 
@@ -37,6 +37,23 @@ export default function postsReducer(state = INITIAL_STATE, action) {
         if (isDataValid(post)) {
           const auxArray = draft.list.data;
           auxArray.unshift(post);
+
+          draft.list.data = auxArray;
+        }
+
+        break;
+      }
+
+      // UPDATE
+      case types.UPDATE.SUCCESS: {
+        const { post, postId } = action.payload;
+
+        if (isDataValid(post)) {
+          const auxArray = draft.list.data;
+
+          const index = auxArray.findIndex((obj) => obj.id === postId);
+
+          auxArray[index] = post;
 
           draft.list.data = auxArray;
         }

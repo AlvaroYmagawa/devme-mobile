@@ -1,10 +1,10 @@
 {
   "posts": [
     {
-      "id": 1,
+      "id": 3,
       "category_id": 2,
       "title": "Ajuda com estilização no React.js",
-      "created_at": "1min atrás",
+      "created_at": "1hora atrás",
       "user": {
         "name": "Kenzo Ymagawa",
         "avatar": "https://scontent.fldb3-1.fna.fbcdn.net/v/t1.0-9/80002404_2606722342777801_5492740259315712000_o.jpg?_nc_cat=110&_nc_sid=09cbfe&_nc_eui2=AeFbxP5SJpvLoUhH7r4uz-36MyqFh_iPEN8zKoWH-I8Q3_YwE5WmaSOgpfrq44M4vwylJa4ydN2OPSfbodCB7Dir&_nc_ohc=meYjR1pk2ikAX_awLrO&_nc_ht=scontent.fldb3-1.fna&oh=f58daf3c5e7e704adbdfd3641243bb6a&oe=5F9548D3"
@@ -23,7 +23,7 @@
       "id": 2,
       "category_id": 3,
       "title": "Node.js ou PHP oque devo escolher?",
-      "created_at": "10min atrás",
+      "created_at": "30min atrás",
       "user": {
         "name": "João da Silva",
         "avatar": "https://conteudo.imguol.com.br/c/noticias/ef/2019/11/08/andras-arato-ficou-conhecido-como-hide-pain-harold-por-causa-de-seu-sorriso-nervoso-1573231062755_v2_450x337.jpg"
@@ -34,6 +34,25 @@
           "id": 1,
           "name": "Node.js",
           "type": "nodeJs",
+          "color": "#264de4"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "category_id": 1,
+      "title": "Animações em React Native",
+      "created_at": "15min atrás",
+      "user": {
+        "name": "Harold D.",
+        "avatar": "https://conteudo.imguol.com.br/c/noticias/ef/2019/11/08/andras-arato-ficou-conhecido-como-hide-pain-harold-por-causa-de-seu-sorriso-nervoso-1573231062755_v2_450x337.jpg"
+      },
+      "description": "Boa tarde estou trabalhando com React Native a alguns poucos meses, e gostaria de aprender melhor sobre animações, algúem poderia me ajudar?",
+      "categories": [
+        {
+          "id": 1,
+          "name": "React Native",
+          "type": "reactNative",
           "color": "#264de4"
         }
       ]
@@ -48,7 +67,8 @@
         "avatar": "https://conteudo.imguol.com.br/c/noticias/ef/2019/11/08/andras-arato-ficou-conhecido-como-hide-pain-harold-por-causa-de-seu-sorriso-nervoso-1573231062755_v2_450x337.jpg"
       },
       "message": "Tenho experiência com React.js posso te ajudar!",
-      "created_at": "20min atrás"
+      "created_at": "45min atrás",
+      "owner": false
     },
     {
       "id": 2,
@@ -81,6 +101,7 @@
       "created_at": "20min atrás"
     },
     {
+      "id": 5,
       "post_id": 1,
       "user": {
         "name": "José Junior",
@@ -90,15 +111,7 @@
       "created_at": "45min atrás"
     },
     {
-      "post_id": 2,
-      "user": {
-        "name": "Harold D.",
-        "avatar": "https://conteudo.imguol.com.br/c/noticias/ef/2019/11/08/andras-arato-ficou-conhecido-como-hide-pain-harold-por-causa-de-seu-sorriso-nervoso-1573231062755_v2_450x337.jpg"
-      },
-      "message": "Tenho experiência com React.js posso te ajudar!",
-      "created_at": "20min atrás"
-    },
-    {
+      "id": 6,
       "post_id": 1,
       "user": {
         "name": "Kenzo",
@@ -106,10 +119,10 @@
       },
       "message": "Meu comentário ",
       "created_at": "Agora mesmo",
-      "owner": true,
-      "id": 8
+      "owner": true
     },
     {
+      "id": 7,
       "post_id": 1,
       "user": {
         "name": "Kenzo",
@@ -117,10 +130,10 @@
       },
       "message": "Meu comentário ",
       "created_at": "Agora mesmo",
-      "owner": true,
-      "id": 9
+      "owner": true
     },
     {
+      "id": 8,
       "post_id": 1,
       "user": {
         "name": "Kenzo",
@@ -128,10 +141,10 @@
       },
       "message": "Novo comentário ",
       "created_at": "Agora mesmo",
-      "owner": true,
-      "id": 10
+      "owner": true
     },
     {
+      "id": 9,
       "post_id": 1,
       "user": {
         "name": "Kenzo",
@@ -139,10 +152,10 @@
       },
       "message": "Mais um!",
       "created_at": "Agora mesmo",
-      "owner": true,
-      "id": 11
+      "owner": true
     },
     {
+      "id": 10,
       "post_id": 1,
       "user": {
         "name": "Kenzo",
@@ -150,8 +163,18 @@
       },
       "message": "Novamente ",
       "created_at": "Agora mesmo",
-      "owner": true,
-      "id": 12
+      "owner": true
+    },
+    {
+      "id": 11,
+      "post_id": 2,
+      "user": {
+        "name": "Kenzo",
+        "avatar": null
+      },
+      "message": "Novo comentário!",
+      "created_at": "Agora mesmo",
+      "owner": true
     }
   ],
   "categories": [

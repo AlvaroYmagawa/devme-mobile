@@ -37,12 +37,6 @@ const CommentCell = ({ comment }) => {
         deleteComment({ commentId: comment.id, setIsDeleting });
         setShowOptions(false);
       },
-    }, {
-      id: 2,
-      name: 'Editar comentário',
-      icon: 'pencil-outline',
-      color: colors.text,
-      onPress: () => {},
     },
   ];
 
