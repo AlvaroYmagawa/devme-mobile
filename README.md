@@ -2,34 +2,33 @@
 
 # Devme mobile
 
-## Table content
+## 📖 Table content
 - [About](#about)
 - [Screens](#screens)
 - [Technologies](#technologies)
 - [How to install](#how-to-install)
 
-
-## About
+## 💻 About
 DEVme is a project with a focus on network generation, in this network you can interact with the posts of several DEVs, in addition to being able to contact them directly via whatsapp.
 Main goals:
 - Share experiences
 - Increase network
 - Ask questions
 
-## Screens
+## 📱 Screens
 ![devme](./assets/prints/siginIn.png)
 ![devme](./assets/prints/home.png)
 ![devme](./assets/prints/createPost.png)
 ![devme](./assets/prints/comments.png)
 ![devme](./assets/prints/profile.png)
 
-## Technologies
+## ⚒️ Technologies
 - [Expo](https://expo.io/)
 - [React Native](https://reactnative.dev/docs/getting-started)
 - [Javascript](https://devdocs.io/javascript/)
 - [Json-server](https://github.com/typicode/json-server)
 
-## How to install
+## ⚙️ How to install
 ```bash
 # Install dependencies
 $ yarn
